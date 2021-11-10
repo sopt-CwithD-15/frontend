@@ -19,15 +19,15 @@
             </a>
         </td>
         <td style="min-width: 150px;">
-            <a href="https://github.com/kimdg1105">
+            <a href="https://github.com/huiseon37">
               <img src="https://github.com/huiseon37.png" width="100">
               <br />
               <b>전희선 (huiseon37)</b>
             </a> 
         </td>
         <td style="min-width: 150px;">
-            <a href="https://github.com/kimdg1105">
-              <img src="https://github.com/Juhee.png" width="100">
+            <a href="https://github.com/Juhee-Hwang">
+              <img src="https://github.com/Juhee-Hwang.png" width="100">
               <br />
               <b>황주희 (Juhee)</b>
             </a> 
