@@ -21,7 +21,9 @@
     "eject": "react-scripts eject",
     "lint": "yarn lint-eslint && yarn lint-prettier",
     "lint-eslint": "eslint --ignore-path .gitignore src/**/*.{js,jsx} --fix",
-    "lint-prettier": "prettier --write \"src/**/*.(js|jsx)\""
+    "lint-prettier": "prettier --write \"src/**/*.(js|jsx)\"",
+    "check-lint": "eslint --ignore-path .gitignore src/**/*.{js,jsx}",
+    "check-format": "prettier --check \"src/**/*.(js|jsx)\""
   },
   "eslintConfig": {
     "extends": [
