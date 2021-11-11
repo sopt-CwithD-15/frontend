@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install packages
-        run: npm ci
+        run: yarn
       - name: Check ESLint
-        run: npm run check-lint
+        run: yarn check-lint
       - name: Check Format
-        run: npm run check-format
+        run: yarn check-format
  
