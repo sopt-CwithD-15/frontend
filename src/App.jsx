@@ -1,15 +1,14 @@
-import { ThemeProvider } from 'styled-components';
 import Router from 'Cores/router';
 import GlobalStyle from 'Style/globalStyle';
-import theme from 'Style/mediaQuery';
+import DarkModeProvider from 'Style/DarkModeProvider';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
+      <DarkModeProvider>
         <Router />
-      </ThemeProvider>
+      </DarkModeProvider>
     </>
   );
 }

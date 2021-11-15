@@ -1,5 +1,5 @@
 export default {
-  white: {
+  light: {
     mainColor: '#ED2123',
     navBarBg: '#ffffff',
     navBarBtnBg: '#F9F9F9',
