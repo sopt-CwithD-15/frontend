@@ -26,5 +26,6 @@ module.exports = {
     'react/display-name': 'off',
     'prettier/prettier': ['error', { singleQuote: true }],
     'no-unused-vars': 'warn',
+    'no-console': 'warn',
   },
 };
