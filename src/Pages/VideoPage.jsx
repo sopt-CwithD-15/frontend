@@ -6,6 +6,7 @@ import VideoContainer from 'Components/VideoContainer';
 import VideoInfo from 'Components/Video/VideoInfo';
 import VideoTitle from 'Components/Video/VideoTitle';
 import VideoTag from 'Components/Video/VideoTag';
+import VideoIcons from 'Components/Video/VideoIcons';
 
 const getVideoTemplate = (vid) => {
   return (
@@ -31,6 +32,7 @@ function VideoPage() {
         <VideoTitle />
         <VideoInfo />
       </InfoContainer>
+      <VideoIcons />
       <VideoContainer />
     </Container>
   );
