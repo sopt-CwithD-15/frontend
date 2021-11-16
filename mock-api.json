@@ -12,7 +12,9 @@
       "thumbnail": {
         "video": "https://i.ytimg.com/vi/6aGIEFJi4tw/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBwAMEFct5EBxORxUXQ_UfAXnHgWA",
         "user": "https://yt3.ggpht.com/ytc/AKedOLQlCGal4wtBYuc-vKJuyA_rqb0hRRLZVnbr4JJa=s68-c-k-c0x00ffffff-no-rj"
-      }
+      },
+      "like": 14500,
+      "dislike": 15
     },
     {
       "id": "U34kLXjdw90",
@@ -26,7 +28,9 @@
       "thumbnail": {
         "video": "https://i.ytimg.com/vi/U34kLXjdw90/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCV_DZPLEKp2Wv4EfH0Gmynx3Ab4Q",
         "user": "https://yt3.ggpht.com/k1fW1JDbT0ilPL9iv5Sp-8-OkXUi6VDsXcISJOg-yOnY8qokJK4cCDv2gYxew5z0pYo5A0mIvg=s68-c-k-c0x00ffffff-no-rj"
-      }
+      },
+      "like": 230,
+      "dislike": 400
     },
     {
       "id": "nYTx3QsyxqQ",
@@ -40,7 +44,9 @@
       "thumbnail": {
         "video": "https://i.ytimg.com/vi/nYTx3QsyxqQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBeRgAATXu4rKOZZ_CGpG0CXlo0JQ",
         "user": "https://yt3.ggpht.com/ytc/AKedOLS2cOY7-dwxUQ92fs3hb5vkXIh-GQjpTxbp7aXWQQ=s68-c-k-c0x00ffffff-no-rj"
-      }
+      },
+      "like": 56600,
+      "dislike": 2
     },
     {
       "id": "3JxHx202csI",
@@ -54,7 +60,9 @@
       "thumbnail": {
         "video": "https://i.ytimg.com/vi/3JxHx202csI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDrbFVSXe5XPLxcn80L1ydCOsqUiw",
         "user": "https://yt3.ggpht.com/xiIgvT6yT0mnuxSOVXzf64YYBTluXXW6H-PPQVEYXFGxfJ9t6XejrwIRAVsWi74cJKhMB6ELkA=s68-c-k-c0x00ffffff-no-rj"
-      }
+      },
+      "like": 1200049,
+      "dislike": 4
     },
     {
       "id": "2rNEWolWnDU",
@@ -68,7 +76,9 @@
       "thumbnail": {
         "video": "https://i.ytimg.com/vi/2rNEWolWnDU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAGu52Gdo3mCTiebdq7mwDO7VwNdA",
         "user": "https://yt3.ggpht.com/12MrbEsFt1DyqwEL-LKmBNeKtgY3AvCKsn0jlwsSlXIx-3JejGFyFPsUTaxA1wae5OGyp3C-KQ=s68-c-k-c0x00ffffff-no-rj"
-      }
+      },
+      "like": 190902,
+      "dislike": 10
     }
   ]
 }
