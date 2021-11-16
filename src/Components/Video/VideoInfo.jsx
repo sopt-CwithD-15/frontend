@@ -4,17 +4,17 @@ import colors from 'Constants/colors';
 
 function VideoInfo() {
   return (
-    <StyledViedoInfo>
+    <StyledVideoInfo>
       <span>조회수 45,187회</span>
       <span>2021. 11. 9.</span>
       <div>
         <img src={newIcon} alt="new" />
       </div>
-    </StyledViedoInfo>
+    </StyledVideoInfo>
   );
 }
 
-const StyledViedoInfo = styled.div`
+const StyledVideoInfo = styled.div`
   padding: 0 0.5rem;
   position: relative;
   display: flex;
