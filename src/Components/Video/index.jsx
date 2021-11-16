@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import VideoInfo from './VideoInfo';
 import VideoProgressBar from './VideoProgressBar';
 import VideoTitle from './VideoTitle';
@@ -11,7 +11,15 @@ import VideoRuntime from './VideoRuntime';
 function Video() {
   const navigator = useNavigate();
   return (
-    <StyledVideo onClick={() => navigator('/video?vid=123')}>
+    <StyledVideo
+      onClick={() =>
+        navigator({
+          pathname: '/video',
+          search: `?${createSearchParams({
+            vid: 'WFe5_ze5e6M',
+          })}`,
+        })
+      }>
       <VideoProgressBar />
       <Wrapper>
         <VideoThumbnail>

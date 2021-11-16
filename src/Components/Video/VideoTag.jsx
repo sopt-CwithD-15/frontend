@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-function VideoTag() {
+function VideoTag(props) {
+  const { color = 'white' } = props;
   return (
     <StyledVideoTag>
-      <Tag>PLAYLIST</Tag>
-      <Tag>CALMMOOD</Tag>
+      <Tag color={color}>PLAYLIST</Tag>
+      <Tag color={color}>CALMMOOD</Tag>
     </StyledVideoTag>
   );
 }
@@ -12,18 +13,18 @@ function VideoTag() {
 const StyledVideoTag = styled.ul`
   display: flex;
   gap: 0.5rem;
+  padding: 0 0.5rem;
 `;
 
 const Tag = styled.li`
-  color: white;
+  color: ${(props) => props.color};
   font-family: Roboto;
   font-size: 0.846rem;
   line-height: 0.846rem;
   letter-spacing: -0.03rem;
-
   &::before {
     content: '#';
-    color: white;
+    color: ${(props) => props.color};
   }
 `;
 
