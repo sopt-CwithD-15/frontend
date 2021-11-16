@@ -5,41 +5,38 @@ import VideoProgressBar from './VideoProgressBar';
 import VideoTitle from './VideoTitle';
 import VideoTag from './VideoTag';
 
-import video1 from 'Assets/img/video1.png';
 import VideoRuntime from './VideoRuntime';
 
-function Video() {
+function Video({ videoInfo }) {
   const navigator = useNavigate();
+  const { id, thumbnail, tags, viewCount, uploadDate, runtime, title } = videoInfo;
   return (
     <StyledVideo
       onClick={() =>
         navigator({
           pathname: '/video',
           search: `?${createSearchParams({
-            vid: 'WFe5_ze5e6M',
+            vid: id,
           })}`,
         })
       }>
       <VideoProgressBar />
       <Wrapper>
         <VideoThumbnail>
-          <img src={video1} alt="video-thumbnail" />
+          <img src={thumbnail.video} alt="video-thumbnail" />
         </VideoThumbnail>
         <ToolWrapper>
           <FlexWrapper>
             <UserThumbnail>
-              <img
-                src="https://images.unsplash.com/photo-1583511655826-05700d52f4d9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=776&q=80"
-                alt="user-thumbnail"
-              />
+              <img src={thumbnail.user} alt="user-thumbnail" />
             </UserThumbnail>
-            <VideoTag />
+            <VideoTag tagList={tags} />
           </FlexWrapper>
-          <VideoRuntime />
+          <VideoRuntime runtime={runtime} />
         </ToolWrapper>
       </Wrapper>
-      <VideoTitle />
-      <VideoInfo />
+      <VideoTitle title={title} />
+      <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
     </StyledVideo>
   );
 }

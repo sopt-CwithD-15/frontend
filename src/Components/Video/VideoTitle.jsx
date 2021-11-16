@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-function VideoTitle() {
-  return <StyledViedoTitle>Playlist | 나른한 인스타 감성에 취하고 싶을 때</StyledViedoTitle>;
+function VideoTitle({ title }) {
+  return <StyledViedoTitle>{title}</StyledViedoTitle>;
 }
 
 const StyledViedoTitle = styled.h2`

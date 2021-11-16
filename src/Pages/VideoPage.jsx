@@ -6,6 +6,8 @@ import VideoContainer from 'Components/VideoContainer';
 import VideoInfo from 'Components/Video/VideoInfo';
 import VideoTitle from 'Components/Video/VideoTitle';
 import VideoTag from 'Components/Video/VideoTag';
+import useVideoInfo from 'Cores/Hooks/useVideoInfo';
+import useVideoList from 'Cores/Hooks/useVideoList';
 
 const getVideoTemplate = (vid) => {
   return (
@@ -22,16 +24,24 @@ const getVideoTemplate = (vid) => {
 function VideoPage() {
   const [searchParams] = useSearchParams();
   const vid = searchParams.get('vid');
+  const { data, loading } = useVideoInfo(vid);
+  const { data: videoList, loading: videoListLoading } = useVideoList();
   return (
     <Container>
       <NavBar />
-      {getVideoTemplate(vid)}
-      <InfoContainer>
-        <VideoTag color={colors.light.blue} />
-        <VideoTitle />
-        <VideoInfo />
-      </InfoContainer>
-      <VideoContainer />
+      {data && !loading && (
+        <>
+          {getVideoTemplate(vid)}
+          <InfoContainer>
+            <VideoTag color={colors.light.blue} tagList={data.tags} />
+            <VideoTitle title={data.title} />
+            <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
+          </InfoContainer>
+        </>
+      )}
+      {data && videoList && !videoListLoading && (
+        <VideoContainer videoList={videoList.filter((video) => video.id !== data.id)} />
+      )}
     </Container>
   );
 }

@@ -1,8 +1,8 @@
 import colors from 'Constants/colors';
 import styled from 'styled-components';
 
-function VideoRuntime() {
-  return <StyledViedoRuntime>29:34</StyledViedoRuntime>;
+function VideoRuntime({ runtime }) {
+  return <StyledViedoRuntime>{runtime}</StyledViedoRuntime>;
 }
 
 const StyledViedoRuntime = styled.span`

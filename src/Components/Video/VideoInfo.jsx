@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import newIcon from 'Assets/icon/new.png';
 import colors from 'Constants/colors';
 
-function VideoInfo() {
+function VideoInfo({ viewCount, uploadDate }) {
   return (
     <StyledViedoInfo>
-      <span>조회수 45,187회</span>
-      <span>2021. 11. 9.</span>
+      <span>{`조회수 ${viewCount.toLocaleString()}회`}</span>
+      <span>{uploadDate}</span>
       <div>
         <img src={newIcon} alt="new" />
       </div>

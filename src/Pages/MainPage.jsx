@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import NavBar from 'Components/NavBar';
 import VideoContainer from 'Components/VideoContainer';
 import FilterBar from 'Components/FilterBar';
+import useVideoList from 'Cores/Hooks/useVideoList';
 
 function MainPage() {
+  const { loading, data } = useVideoList();
   return (
     <Container>
       <NavBar />
       <FilterBar />
-      <VideoContainer />
+      {data && !loading && <VideoContainer videoList={data} />}
     </Container>
   );
 }
