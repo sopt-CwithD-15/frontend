@@ -1,6 +1,7 @@
 export default {
   light: {
     mainColor: '#ED2123',
+    navBarLogin: 'black',
     navBarBg: '#ffffff',
     navBarBtnBg: '#F9F9F9',
     blue: '#065FD4',
@@ -15,6 +16,7 @@ export default {
   },
   dark: {
     mainColor: '#ED2123',
+    navBarLogin: 'white',
     navBarBg: '#252525',
     subText: 'white',
     blue: '#065FD4',
