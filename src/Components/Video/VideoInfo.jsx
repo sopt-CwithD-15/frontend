@@ -24,7 +24,7 @@ const StyledViedoInfo = styled.div`
     color: ${({ theme }) => colors[theme.currentMode].subText};
     font-family: Roboto;
     letter-spacing: -0.03rem;
-    font-size: 0.769rem;
+    font-size: 1rem;
   }
 
   & > span:first-child {

@@ -10,7 +10,7 @@ const StyledViedoRuntime = styled.span`
   border-radius: 30px;
   padding: 0.2rem 0.6rem;
   color: white;
-  font-size: 1rem;
+  font-size: 1.3rem;
 `;
 
 export default VideoRuntime;

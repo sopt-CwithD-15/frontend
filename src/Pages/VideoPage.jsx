@@ -39,7 +39,7 @@ function VideoPage() {
 const Container = styled.main`
   width: 100%;
   & iframe {
-    height: 15.615rem;
+    height: 20.3rem;
   }
 `;
 

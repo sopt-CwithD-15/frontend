@@ -67,8 +67,8 @@ const VideoThumbnail = styled.div`
 `;
 
 const UserThumbnail = styled.div`
-  width: 3.538rem;
-  height: 3.538rem;
+  width: 4.6rem;
+  height: 4.6rem;
   border-radius: 50%;
   overflow: hidden;
   z-index: 1001;

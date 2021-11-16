@@ -19,8 +19,8 @@ const StyledVideoTag = styled.ul`
 const Tag = styled.li`
   color: ${(props) => props.color};
   font-family: Roboto;
-  font-size: 0.846rem;
-  line-height: 0.846rem;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
   letter-spacing: -0.03rem;
   &::before {
     content: '#';
