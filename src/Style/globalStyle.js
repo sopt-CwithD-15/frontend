@@ -19,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
     @media ${deviceMediaQuery.desktop} {
       font-size: 18px;
     }
+
+    font-family: Roboto;
   }
 
   * {
