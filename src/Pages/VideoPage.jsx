@@ -31,7 +31,7 @@ function VideoPage() {
       <NavBar />
       {data && !loading && (
         <>
-          {getVideoTemplate(vid)}
+          <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
           <InfoContainer>
             <VideoTag color={colors.light.blue} tagList={data.tags} />
             <VideoTitle title={data.title} />
@@ -49,7 +49,10 @@ function VideoPage() {
 const Container = styled.main`
   width: 100%;
   & iframe {
-    height: 20.3rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -58,6 +61,11 @@ const InfoContainer = styled.div`
   flex-direction: column;
   background-color: ${({ theme }) => colors[theme.currentMode].navBarBg};
   padding: 0.5rem;
+`;
+
+const IFrameWrapper = styled.div`
+  position: relative;
+  padding-bottom: 56.25%;
 `;
 
 export default VideoPage;
