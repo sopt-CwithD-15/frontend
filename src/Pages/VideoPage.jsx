@@ -8,6 +8,7 @@ import VideoTitle from 'Components/Video/VideoTitle';
 import VideoTag from 'Components/Video/VideoTag';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useVideoList from 'Cores/Hooks/useVideoList';
+import CommentHandler from 'Components/Comment/CommentHandler';
 
 const getVideoTemplate = (vid) => {
   return (
@@ -39,6 +40,7 @@ function VideoPage() {
           </InfoContainer>
         </>
       )}
+      <CommentHandler />
       {data && videoList && !videoListLoading && (
         <VideoContainer videoList={videoList.filter((video) => video.id !== data.id)} />
       )}
