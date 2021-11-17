@@ -9,6 +9,7 @@ import VideoTag from 'Components/Video/VideoTag';
 import VideoIcons from 'Components/Video/VideoIcons';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useVideoList from 'Cores/Hooks/useVideoList';
+import CommentHandler from 'Components/Comment/CommentHandler';
 import ChannelInfo from 'Components/Video/ChannelInfo';
 
 const getVideoTemplate = (vid) => {
@@ -43,6 +44,7 @@ function VideoPage() {
           <ChannelInfo profile={data.thumbnail.user} author={data.author} subscribeCount={data.subscribeCount} />
         </>
       )}
+      <CommentHandler />
       {data && videoList && !videoListLoading && (
         <VideoContainer videoList={videoList.filter((video) => video.id !== data.id)} />
       )}
