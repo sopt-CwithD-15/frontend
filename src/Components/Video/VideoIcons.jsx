@@ -1,41 +1,62 @@
 import styled from 'styled-components';
-import newIcon from 'Assets/icon/new.png';
+import likeIcon from 'Assets/icon/like.svg';
+import unlikeIcon from 'Assets/icon/unlike.svg';
+import shareIcon from 'Assets/icon/arrow.svg';
+import saveIcon from 'Assets/icon/list1.svg';
+import reportIcon from 'Assets/icon/flag.svg';
 import colors from 'Constants/colors';
 
 function VideoIcons() {
   return (
     <StyledVideoIcons>
-      <span>조회수 45,187회</span>
-      <span>2021. 11. 9.</span>
-      <div>
-        <img src={newIcon} alt="new" />
-      </div>
+      <IconLabelButton src={likeIcon} label="9.3천" alt="like"></IconLabelButton>
+      <IconLabelButton src={unlikeIcon} label="10" alt="unlike"></IconLabelButton>
+      <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
+      <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
+      <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>
     </StyledVideoIcons>
   );
 }
 
-const StyledVideoIcons = styled.div`
-  padding: 0 0.5rem;
-  position: relative;
+function IconLabelButton({ src, label, alt }) {
+  return (
+    <StyledIconLabelButton>
+      <ImageHolder>
+        <Image src={src} alt={alt} />
+      </ImageHolder>
+      <Label>{label}</Label>
+    </StyledIconLabelButton>
+  );
+}
+
+const StyledIconLabelButton = styled.button`
+  background-color: transparent;
+  border: 0;
+  font-family: Roboto;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ImageHolder = styled.span`
   display: flex;
   align-items: center;
+  height: 2.6rem;
+`;
 
-  & > span {
-    color: ${({ theme }) => colors[theme.currentMode].subText};
-    font-family: Roboto;
-    letter-spacing: -0.03rem;
-    font-size: 0.769rem;
-  }
+const Image = styled.img``;
 
-  & > span:first-child {
-    &::after {
-      content: '∙';
-    }
-  }
+const Label = styled.span`
+  color: ${({ theme }) => colors[theme.currentMode].iconText};
+  font-size: 1.1rem;
+`;
 
-  & > div {
-    margin-left: 0.5rem;
-  }
+const StyledVideoIcons = styled.div`
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export default VideoIcons;
