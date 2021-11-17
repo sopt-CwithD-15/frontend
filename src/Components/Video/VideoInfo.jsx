@@ -4,7 +4,7 @@ import colors from 'Constants/colors';
 
 function VideoInfo({ viewCount, uploadDate }) {
   return (
-    <StyledViedoInfo>
+    <StyledVideoInfo>
       <span>{`조회수 ${viewCount.toLocaleString()}회`}</span>
       <span>{uploadDate}</span>
       <div>

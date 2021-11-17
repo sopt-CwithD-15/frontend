@@ -30,6 +30,7 @@ function VideoPage() {
   return (
     <Container>
       <NavBar />
+      <VideoIcons />
       {data && !loading && (
         <>
           <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
