@@ -9,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
 
-    font-size:62.5%;
-    
+    font-size: 62.5%;
+
     font-family: Roboto;
   }
 

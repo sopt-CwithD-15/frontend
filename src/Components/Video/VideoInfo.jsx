@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import newIcon from 'Assets/icon/new.png';
 import colors from 'Constants/colors';
 
-function VideoInfo() {
+function VideoInfo({ viewCount, uploadDate }) {
   return (
-    <StyledViedoInfo>
-      <span>조회수 45,187회</span>
-      <span>2021. 11. 9.</span>
+    <StyledVideoInfo>
+      <span>{`조회수 ${viewCount.toLocaleString()}회`}</span>
+      <span>{uploadDate}</span>
       <div>
         <img src={newIcon} alt="new" />
       </div>
-    </StyledViedoInfo>
+    </StyledVideoInfo>
   );
 }
 
-const StyledViedoInfo = styled.div`
+const StyledVideoInfo = styled.div`
   padding: 0 0.5rem;
   position: relative;
   display: flex;
@@ -24,7 +24,7 @@ const StyledViedoInfo = styled.div`
     color: ${({ theme }) => colors[theme.currentMode].subText};
     font-family: Roboto;
     letter-spacing: -0.03rem;
-    font-size: 0.769rem;
+    font-size: 1rem;
   }
 
   & > span:first-child {

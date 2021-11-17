@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 function VideoTag(props) {
-  const { color = 'white' } = props;
+  const { color = 'white', tagList } = props;
   return (
     <StyledVideoTag>
-      <Tag color={color}>PLAYLIST</Tag>
-      <Tag color={color}>CALMMOOD</Tag>
+      {tagList &&
+        tagList.map((tag) => (
+          <Tag key={tag} color={color}>
+            {tag}
+          </Tag>
+        ))}
     </StyledVideoTag>
   );
 }
@@ -19,8 +23,9 @@ const StyledVideoTag = styled.ul`
 const Tag = styled.li`
   color: ${(props) => props.color};
   font-family: Roboto;
-  font-size: 0.846rem;
-  line-height: 0.846rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
   letter-spacing: -0.03rem;
   &::before {
     content: '#';

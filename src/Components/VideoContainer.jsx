@@ -1,16 +1,8 @@
 import styled from 'styled-components';
 import Video from './Video';
 
-function VideoContainer() {
-  return (
-    <Container>
-      <Video />
-      <Video />
-      <Video />
-      <Video />
-      <Video />
-    </Container>
-  );
+function VideoContainer({ videoList }) {
+  return <Container>{videoList && videoList.map((video) => <Video videoInfo={video} key={video.id} />)}</Container>;
 }
 
 const Container = styled.div`
