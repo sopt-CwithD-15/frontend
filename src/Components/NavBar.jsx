@@ -5,14 +5,22 @@ import { ReactComponent as ModeChangeIC } from '../Assets/icon/Navbar/modeChange
 import { ReactComponent as SearchIC } from '../Assets/icon/Navbar/searchIC.svg';
 import { ReactComponent as DotMenuIC } from '../Assets/icon/Navbar/dotMenuIC.svg';
 import { ReactComponent as LoginIC } from '../Assets/icon/Navbar/loginIC.svg';
+import { ReactComponent as DarkModeChangeIC } from '../Assets/icon/Navbar/darkModeChangeIC.svg';
+import useDarkmode from '../Cores/Hooks/useDarkmode';
 
 function NavBar() {
+  const { currentMode, toggleMode } = useDarkmode();
+
+  const handlerClick = () => {
+    toggleMode();
+  };
+
   return (
     <StyledNavBar>
       <Logo alt="logo" />
       <StyledUL>
-        <li>
-          <ModeChange alt="modeChange" />
+        <li onClick={handlerClick}>
+          {currentMode === 'light' ? <ModeChange alt="modeChange" /> : <DarkModeChange alt="modeChange" />}
         </li>
         <li>
           <Search alt="search" />
@@ -64,9 +72,12 @@ const ModeChange = styled(ModeChangeIC)`
   width: 1.8rem;
   height: 1.8rem;
   margin-right: 1rem;
-  & > * {
-    fill: ${({ theme }) => colors[theme.currentMode].navBarLogin};
-  }
+`;
+
+const DarkModeChange = styled(DarkModeChangeIC)`
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 1rem;
 `;
 
 const Search = styled(SearchIC)`
