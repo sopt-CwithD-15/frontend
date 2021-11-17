@@ -24,7 +24,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'prettier/prettier': ['error', { singleQuote: true }],
+    'prettier/prettier': ['error', { endOfLine: 'auto', singleQuote: true }, { usePrettierrc: true }],
     'no-unused-vars': 'warn',
     'no-console': 'warn',
   },
