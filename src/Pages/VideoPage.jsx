@@ -6,6 +6,7 @@ import VideoContainer from 'Components/VideoContainer';
 import VideoInfo from 'Components/Video/VideoInfo';
 import VideoTitle from 'Components/Video/VideoTitle';
 import VideoTag from 'Components/Video/VideoTag';
+import VideoIcons from 'Components/Video/VideoIcons';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useVideoList from 'Cores/Hooks/useVideoList';
 
@@ -29,6 +30,7 @@ function VideoPage() {
   return (
     <Container>
       <NavBar />
+      <VideoIcons />
       {data && !loading && (
         <>
           <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
