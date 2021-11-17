@@ -30,7 +30,6 @@ function VideoPage() {
   return (
     <Container>
       <NavBar />
-      <VideoIcons />
       {data && !loading && (
         <>
           <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
@@ -41,6 +40,7 @@ function VideoPage() {
           </InfoContainer>
         </>
       )}
+      <VideoIcons />
       {data && videoList && !videoListLoading && (
         <VideoContainer videoList={videoList.filter((video) => video.id !== data.id)} />
       )}
