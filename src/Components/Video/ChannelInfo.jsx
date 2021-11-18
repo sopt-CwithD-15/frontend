@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from 'Constants/colors';
+import { shortenNumber } from 'Utils/shortenNumber';
 
 function ChannelInfo(props) {
   const { profile, author, subscribeCount } = props;
@@ -10,7 +11,7 @@ function ChannelInfo(props) {
       </ChannelProfile>
       <ChannelInfoWrapper>
         <ChannelName>{author}</ChannelName>
-        <ChannelSubscribeCount>{subscribeCount}</ChannelSubscribeCount>
+        <ChannelSubscribeCount>{shortenNumber(subscribeCount)}</ChannelSubscribeCount>
       </ChannelInfoWrapper>
       <SubscribeButton>구독</SubscribeButton>
     </StyledChannelInfo>
