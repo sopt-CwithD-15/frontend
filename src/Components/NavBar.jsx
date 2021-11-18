@@ -14,8 +14,6 @@ function NavBar() {
   const { currentMode, toggleMode } = useDarkmode();
   const location = useLocation();
 
-  console.log(location.pathname);
-
   const handlerClick = () => {
     toggleMode();
   };
