@@ -5,20 +5,20 @@ import colors from 'Constants/colors';
 import reply from 'Assets/icon/reply.svg';
 import filter from 'Assets/icon/filter.svg';
 import close from 'Assets/icon/close.svg';
-import me from 'Assets/icon/me-thumbnail.svg';
+import meWhite from 'Assets/icon/me-thumbnail-white.svg';
 
 const temporalComments = [
   {
     author: 'Julia Kim',
     text: 'Hello this is my text temporla test case comments',
     like: '1.2만',
-    dislike: 12,
+    unlike: 12,
   },
   {
     author: 'Julia Kim',
     text: 'Hello this is my text temporla test case comments',
     like: '2.1천',
-    dislike: 5,
+    unlike: 5,
   },
 ];
 
@@ -43,7 +43,7 @@ function CommentList({ comments = temporalComments, toggle }) {
             댓글을 사용할 때는 타인을 존중하고 <span>커뮤니티 가이드</span> 를 준수해야 합니다.
           </CommentWarnText>
           <InputWrapper>
-            <img src={me} alt="my-thumbnail" />
+            <img src={meWhite} alt="my-thumbnail" />
             <CommentInput placeholder="공개 댓글 추가..." />
           </InputWrapper>
           <CommentBody>

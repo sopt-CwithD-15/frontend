@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import profile from 'Assets/icon/profileImage.svg';
 import reReply from 'Assets/icon/re-reply.svg';
 import like from 'Assets/icon/like_no_margin.svg';
-import dislike from 'Assets/icon/unlike_no_margin.svg';
+import unlike from 'Assets/icon/unlike_no_margin.svg';
 import blueDown from 'Assets/icon/blue-down.svg';
 
 function Comment() {
@@ -27,7 +27,7 @@ function Comment() {
             <span>1.2만</span>
           </IconWrapper>
           <IconWrapper>
-            <img src={dislike} alt={dislike} />
+            <img src={unlike} alt={unlike} />
             <span>53</span>
           </IconWrapper>
           <IconWrapper>

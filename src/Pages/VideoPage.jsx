@@ -51,7 +51,7 @@ function VideoPage() {
             <VideoTitle title={videoInfo.title} />
             <VideoInfo viewCount={videoInfo.viewCount} uploadDate={videoInfo.uploadDate} />
           </InfoContainer>
-          <VideoIcons />
+          <VideoIcons like={videoInfo.like} unlike={videoInfo.unlike} />
           <ChannelInfo
             profile={videoInfo.thumbnail.user}
             author={videoInfo.author}
