@@ -9,6 +9,7 @@ import VideoTag from 'Components/Video/VideoTag';
 import VideoIcons from 'Components/Video/VideoIcons';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useVideoList from 'Cores/Hooks/useVideoList';
+import ChannelInfo from 'Components/Video/ChannelInfo';
 
 const getVideoTemplate = (vid) => {
   return (
@@ -38,9 +39,10 @@ function VideoPage() {
             <VideoTitle title={data.title} />
             <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
           </InfoContainer>
+          <VideoIcons />
+          <ChannelInfo profile={data.thumbnail.user} author={data.author} subscribeCount={data.subscribeCount} />
         </>
       )}
-      <VideoIcons />
       {data && videoList && !videoListLoading && (
         <VideoContainer videoList={videoList.filter((video) => video.id !== data.id)} />
       )}
