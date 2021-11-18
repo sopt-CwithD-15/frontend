@@ -13,6 +13,7 @@ import { ReactComponent as DarkModeChangeIC } from 'Assets/icon/Navbar/darkModeC
 function NavBar() {
   const { currentMode, toggleMode } = useDarkmode();
   const location = useLocation();
+
   const handlerClick = () => {
     toggleMode();
   };
