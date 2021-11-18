@@ -5,12 +5,14 @@ import shareIcon from 'Assets/icon/arrow.svg';
 import saveIcon from 'Assets/icon/list1.svg';
 import reportIcon from 'Assets/icon/flag.svg';
 import colors from 'Constants/colors';
+import { shortenNumber } from 'Utils/shortenNumber';
 
-function VideoIcons() {
+function VideoIcons(props) {
+  const { like, unlike } = props;
   return (
     <StyledVideoIcons>
-      <IconLabelButton src={likeIcon} label="9.3천" alt="like"></IconLabelButton>
-      <IconLabelButton src={unlikeIcon} label="10" alt="unlike"></IconLabelButton>
+      <IconLabelButton src={likeIcon} label={shortenNumber(like)} alt="like"></IconLabelButton>
+      <IconLabelButton src={unlikeIcon} label={shortenNumber(unlike)} alt="unlike"></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
       <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
       <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>

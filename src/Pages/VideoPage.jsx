@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import NavBar from 'Components/NavBar';
-import VideoContainer from 'Components/VideoContainer';
+import NavBar from 'Components/Common/NavBar';
+import VideoContainer from 'Components/Video/VideoContainer';
 import VideoInfo from 'Components/Video/VideoInfo';
 import VideoTitle from 'Components/Video/VideoTitle';
 import VideoTag from 'Components/Video/VideoTag';
