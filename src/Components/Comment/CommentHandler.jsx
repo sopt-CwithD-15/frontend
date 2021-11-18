@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-import { useState } from 'react';
->>>>>>> comment
 import Responsive from 'Components/Responsive';
 import CommentToggleButton from './CommentToggleButton';
 import CommentList from './CommentList';

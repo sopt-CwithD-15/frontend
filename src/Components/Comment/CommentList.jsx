@@ -5,10 +5,7 @@ import colors from 'Constants/colors';
 import reply from 'Assets/icon/reply.svg';
 import filter from 'Assets/icon/filter.svg';
 import close from 'Assets/icon/close.svg';
-<<<<<<< HEAD
 import me from 'Assets/icon/me-thumbnail.svg';
-=======
->>>>>>> comment
 
 const temporalComments = [
   {
@@ -42,7 +39,6 @@ function CommentList({ comments = temporalComments, toggle }) {
               </CloseButton>
             </RightWrapper>
           </CommentHeader>
-<<<<<<< HEAD
           <CommentWarnText>
             댓글을 사용할 때는 타인을 존중하고 <span>커뮤니티 가이드</span> 를 준수해야 합니다.
           </CommentWarnText>
@@ -50,8 +46,6 @@ function CommentList({ comments = temporalComments, toggle }) {
             <img src={me} alt="my-thumbnail" />
             <CommentInput placeholder="공개 댓글 추가..." />
           </InputWrapper>
-=======
->>>>>>> comment
           <CommentBody>
             <Comment />
             <Comment />
@@ -81,7 +75,6 @@ const CommentHeader = styled.header`
   align-items: center;
   padding: 1.5rem 1rem;
 
-<<<<<<< HEAD
   background-color: ${({ theme }) => colors[theme.currentMode].mobileCommentListHeader};
 
   & img {
@@ -125,10 +118,6 @@ const CommentInput = styled.input`
 
   background-color: transparent;
   border: none;
-=======
-  background-color: #f4f4f4;
-  border-bottom: 0.02rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
->>>>>>> comment
 `;
 
 const ReplyWrapper = styled.div`
@@ -140,13 +129,10 @@ const ReplyWrapper = styled.div`
     width: 1.6rem;
     height: 1.2rem;
   }
-<<<<<<< HEAD
 
   & > span {
     color: ${({ theme }) => colors[theme.currentMode].iconText};
   }
-=======
->>>>>>> comment
 `;
 
 const RightWrapper = styled(ReplyWrapper)`
@@ -166,13 +152,9 @@ const CloseButton = styled.button`
   align-items: center;
 `;
 
-<<<<<<< HEAD
 const CommentBody = styled.ul`
   display: flex;
   flex-direction: column;
 `;
-=======
-const CommentBody = styled.ul``;
->>>>>>> comment
 
 export default CommentList;

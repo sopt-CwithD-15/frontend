@@ -11,10 +11,7 @@ import VideoIcons from 'Components/Video/VideoIcons';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useVideoList from 'Cores/Hooks/useVideoList';
 import CommentHandler from 'Components/Comment/CommentHandler';
-<<<<<<< HEAD
 import ChannelInfo from 'Components/Video/ChannelInfo';
-=======
->>>>>>> comment
 
 const getVideoTemplate = (vid) => {
   return (
@@ -42,7 +39,6 @@ function VideoPage() {
         <>
           <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
           {!isMobileCommentOpen && (
-<<<<<<< HEAD
             <>
               <InfoContainer>
                 <VideoTag color={colors.light.blue} tagList={data.tags} />
@@ -52,13 +48,6 @@ function VideoPage() {
               <VideoIcons />
               <ChannelInfo profile={data.thumbnail.user} author={data.author} subscribeCount={data.subscribeCount} />
             </>
-=======
-            <InfoContainer>
-              <VideoTag color={colors.light.blue} tagList={data.tags} />
-              <VideoTitle title={data.title} />
-              <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
-            </InfoContainer>
->>>>>>> comment
           )}
         </>
       )}

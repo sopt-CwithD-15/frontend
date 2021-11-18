@@ -36,14 +36,11 @@ const CommentOpenButton = styled.button`
   padding: 0 1rem;
   background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
   border: none;
-<<<<<<< HEAD
   color: ${({ theme }) => colors[theme.currentMode].iconText};
 
   & img {
     filter: ${({ theme }) => (theme.currentMode === 'light' ? 'brightness(0) invert(0)' : 'brightness(1) invert(1)')};
   }
-=======
->>>>>>> comment
 `;
 
 const OepnButtonHeader = styled.div`
@@ -52,10 +49,7 @@ const OepnButtonHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-<<<<<<< HEAD
 
-=======
->>>>>>> comment
 const OepnButtonBody = styled.div`
   display: flex;
   align-items: center;
@@ -74,10 +68,7 @@ const ImageWrapper = styled.div`
     overflow: hidden;
     width: 2.3rem;
     height: 2.3rem;
-<<<<<<< HEAD
     filter: unset;
-=======
->>>>>>> comment
   }
 `;
 
