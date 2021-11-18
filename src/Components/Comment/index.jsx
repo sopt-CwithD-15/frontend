@@ -31,7 +31,7 @@ function Comment() {
             <span>53</span>
           </IconWrapper>
           <IconWrapper>
-            <img src={reReply} alt={reReply} id="except" />
+            <img src={reReply} alt={reReply} />
             <BlueText>
               답글 2개 <img src={blueDown} alt="blueDown" />
             </BlueText>
@@ -48,8 +48,7 @@ const StyledComment = styled.article`
   gap: 1rem;
   padding: 1rem 1.5rem;
 
-  border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
-  color: ${({ theme }) => colors[theme.currentMode].iconText};
+  border-top: 0.02rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
 `;
 
 const UserThumbnail = styled.div`
@@ -77,6 +76,7 @@ const CommentAuthor = styled.h2`
   line-height: 1.4rem;
   font-size: 1.2rem;
   font-weight: bolder;
+  color: ${({ theme }) => colors[theme.currentMode].iconText};
 `;
 
 const CommentDate = styled.span`
@@ -110,10 +110,6 @@ const IconWrapper = styled.div`
 
   & > span {
     font-size: 1rem;
-  }
-
-  & > img:not(#except) {
-    filter: ${({ theme }) => (theme.currentMode === 'light' ? 'brightness(0) invert(0)' : 'brightness(1) invert(1)')};
   }
 `;
 

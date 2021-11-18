@@ -39,15 +39,13 @@ function VideoPage() {
         <>
           <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
           {!isMobileCommentOpen && (
-            <>
-              <InfoContainer>
-                <VideoTag color={colors.light.blue} tagList={data.tags} />
-                <VideoTitle title={data.title} />
-                <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
-              </InfoContainer>
-              <VideoIcons />
-              <ChannelInfo profile={data.thumbnail.user} author={data.author} subscribeCount={data.subscribeCount} />
-            </>
+            <InfoContainer>
+              <VideoTag color={colors.light.blue} tagList={data.tags} />
+              <VideoTitle title={data.title} />
+              <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
+            </InfoContainer>
+            <VideoIcons />
+            <ChannelInfo profile={data.thumbnail.user} author={data.author} subscribeCount={data.subscribeCount} />
           )}
         </>
       )}
