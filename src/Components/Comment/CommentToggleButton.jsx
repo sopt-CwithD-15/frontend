@@ -30,6 +30,7 @@ const CommentOpenButton = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   padding: 0 1rem;
 `;
@@ -64,10 +65,11 @@ const ReplyWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  font-size: 1.2rem;
 
   & > img {
     width: 1.6rem;
-    width: 1.2rem;
+    height: 1.2rem;
   }
 `;
 

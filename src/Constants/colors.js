@@ -12,6 +12,8 @@ export default {
     searchTabBorder: '#ECECEC',
     progressBg: 'rgba(0, 0, 0, 0.8)',
     searchBarBg: 'white',
+    channelInfoBorder: '#959595',
+    iconText: '#030303',
   },
   dark: {
     mainColor: '#ED2123',
@@ -26,5 +28,6 @@ export default {
     subscribingText: '#868686',
     progressBg: 'rgba(0, 0, 0, 0.8)',
     searchTabBorder: '#121212',
+    channelInfoBorder: '#7c7c7c',
   },
 };

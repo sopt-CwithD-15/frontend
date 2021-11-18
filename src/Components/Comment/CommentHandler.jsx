@@ -13,7 +13,11 @@ function CommentHandler() {
   return (
     <>
       <Responsive mobile>
-        {!isMobileCommentOpen ? <CommentToggleButton toggle={toggle} initComment={temporalComment} /> : <CommentList />}
+        {!isMobileCommentOpen ? (
+          <CommentToggleButton toggle={toggle} initComment={temporalComment} />
+        ) : (
+          <CommentList toggle={toggle} />
+        )}
       </Responsive>
     </>
   );

@@ -68,7 +68,6 @@ const UserThumbnail = styled.div`
   height: 4.6rem;
   border-radius: 50%;
   overflow: hidden;
-  z-index: 1001;
 
   & > img {
     max-width: 100%;

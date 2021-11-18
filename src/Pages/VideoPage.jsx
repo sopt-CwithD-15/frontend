@@ -50,6 +50,7 @@ function VideoPage() {
 
 const Container = styled.main`
   width: 100%;
+  position: relative;
   & iframe {
     position: absolute;
     top: 0;
@@ -67,7 +68,8 @@ const InfoContainer = styled.div`
 
 const IFrameWrapper = styled.div`
   position: relative;
-  padding-bottom: 56.25%;
+  /* padding-bottom: 56.25%; */
+  padding-top: 20.3rem;
 `;
 
 export default VideoPage;
