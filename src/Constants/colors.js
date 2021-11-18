@@ -14,8 +14,9 @@ export default {
     searchTabBorder: '#ECECEC',
     searchBarBg: 'white',
     progressBg: 'rgba(0, 0, 0, 0.8)',
-    iconText: '#030303',
+    searchBarBg: 'white',
     channelInfoBorder: '#959595',
+    iconText: '#030303',
   },
   dark: {
     mainColor: '#ED2123',
@@ -32,7 +33,7 @@ export default {
     searchTabBorder: '#121212',
     searchBarBg: '#121212',
     progressBg: 'rgba(0, 0, 0, 0.8)',
-    iconText: '#FFFFFF',
-    channelInfoBorder: '#7C7C7C',
+    searchTabBorder: '#121212',
+    channelInfoBorder: '#7c7c7c',
   },
 };
