@@ -8,7 +8,6 @@ function FilterBar() {
 
   const handlerClick = (e) => {
     setClick(e.target.name);
-    console.log(click);
   };
 
   return (
