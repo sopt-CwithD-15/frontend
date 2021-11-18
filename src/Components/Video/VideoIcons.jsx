@@ -45,7 +45,9 @@ const ImageHolder = styled.span`
   height: 2.6rem;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  filter: ${({ theme }) => (theme.currentMode === 'dark' ? 'brightness(1) invert(1)' : 'brightness(0) invert(0)')};
+`;
 
 const Label = styled.span`
   color: ${({ theme }) => colors[theme.currentMode].iconText};

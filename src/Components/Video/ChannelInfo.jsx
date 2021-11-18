@@ -52,8 +52,15 @@ const ChannelName = styled.div`
 `;
 
 const ChannelSubscribeCount = styled.div`
+  &::before {
+    content: '구독자 ';
+  }
+  &::after {
+    content: '명';
+  }
   color: ${({ theme }) => colors[theme.currentMode].iconText};
   font-size: 1rem;
+  letter-spacing: -0.03rem;
 `;
 
 const SubscribeButton = styled.button`
