@@ -26,6 +26,7 @@ function MainPage() {
 
 const Container = styled.main`
   width: 100%;
+  background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
 `;
 
 const Wrapper = styled.div`
