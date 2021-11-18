@@ -40,6 +40,14 @@ function CommentList({ comments = temporalComments, toggle }) {
           </CommentHeader>
           <CommentBody>
             <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
           </CommentBody>
         </CommentContainer>
       </Responsive>
@@ -48,12 +56,7 @@ function CommentList({ comments = temporalComments, toggle }) {
 }
 
 const CommentContainer = styled.div`
-  position: absolute;
-  /* top: calc(4.5rem + 20.3rem); -> 메인 변경점 반영 */
-  top: calc(1.1rem + 20.3rem);
   width: 100%;
-  height: 100%;
-  z-index: 1001;
   background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
 `;
 

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import reply from 'Assets/icon/reply.svg';
 import down from 'Assets/icon/down.svg';
+import colors from 'Constants/colors';
 
 function CommentToggleButton(props) {
   const { initComment, toggle } = props;
@@ -26,16 +27,19 @@ function CommentToggleButton(props) {
   );
 }
 
-const CommentOpenButton = styled.div`
+const CommentOpenButton = styled.button`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
   padding: 0 1rem;
+  background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
+  border: none;
 `;
 
 const OepnButtonHeader = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

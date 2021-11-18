@@ -7,9 +7,8 @@ import profile from 'Assets/icon/profileImage.svg';
 const temporalText = 'We can all agree that MAVERICK is one of their POWERFUL cb!!!!! This is us!';
 const temporalComment = { commentCount: 415, thumbnail: profile, text: temporalText };
 
-function CommentHandler() {
-  const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
-  const toggle = () => setIsMobileCommentOpen(!isMobileCommentOpen);
+function CommentHandler(props) {
+  const { isMobileCommentOpen, toggle } = props;
   return (
     <>
       <Responsive mobile>
