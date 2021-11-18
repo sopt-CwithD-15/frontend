@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import NavBar from 'Components/NavBar';
 import { useSearchParams } from 'react-router-dom';
@@ -27,21 +28,25 @@ function VideoPage() {
   const vid = searchParams.get('vid');
   const { data, loading } = useVideoInfo(vid);
   const { data: videoList, loading: videoListLoading } = useVideoList();
+  const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
+  const toggle = () => setIsMobileCommentOpen(!isMobileCommentOpen);
   return (
     <Container>
       <NavBar />
       {data && !loading && (
         <>
           <IFrameWrapper>{getVideoTemplate(vid)}</IFrameWrapper>
-          <InfoContainer>
-            <VideoTag color={colors.light.blue} tagList={data.tags} />
-            <VideoTitle title={data.title} />
-            <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
-          </InfoContainer>
+          {!isMobileCommentOpen && (
+            <InfoContainer>
+              <VideoTag color={colors.light.blue} tagList={data.tags} />
+              <VideoTitle title={data.title} />
+              <VideoInfo viewCount={data.viewCount} uploadDate={data.uploadDate} />
+            </InfoContainer>
+          )}
         </>
       )}
-      <CommentHandler />
-      {data && videoList && !videoListLoading && (
+      <CommentHandler isMobileCommentOpen={isMobileCommentOpen} toggle={toggle} />
+      {data && videoList && !videoListLoading && !isMobileCommentOpen && (
         <VideoContainer videoList={videoList.filter((video) => video.id !== data.id)} />
       )}
     </Container>
@@ -50,7 +55,10 @@ function VideoPage() {
 
 const Container = styled.main`
   width: 100%;
+  height: 100%;
   position: relative;
+  background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
+
   & iframe {
     position: absolute;
     top: 0;
@@ -62,13 +70,12 @@ const Container = styled.main`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => colors[theme.currentMode].navBarBg};
+  background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
   padding: 0.5rem;
 `;
 
 const IFrameWrapper = styled.div`
   position: relative;
-  /* padding-bottom: 56.25%; */
   padding-top: 20.3rem;
 `;
 

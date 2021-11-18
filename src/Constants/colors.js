@@ -14,6 +14,7 @@ export default {
     searchBarBg: 'white',
     channelInfoBorder: '#959595',
     iconText: '#030303',
+    mobileCommentListHeader: '#f4f4f4',
   },
   dark: {
     mainColor: '#ED2123',
@@ -29,5 +30,6 @@ export default {
     progressBg: 'rgba(0, 0, 0, 0.8)',
     searchTabBorder: '#121212',
     channelInfoBorder: '#7c7c7c',
+    mobileCommentListHeader: '#212121',
   },
 };
