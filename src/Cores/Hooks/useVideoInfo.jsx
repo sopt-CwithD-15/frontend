@@ -1,13 +1,22 @@
 import { client } from 'Cores/api';
 import { useState, useEffect } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
-function useVideoInfo(vid) {
+const VID = 'vid';
+
+function useVideoInfo() {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const initialVid = searchParams.get(VID);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState(null);
-  const [currentVid, setCurrentVid] = useState(vid);
+  const [currentVid, setCurrentVid] = useState(initialVid);
 
-  const mutate = (newVid) => setCurrentVid(newVid);
+  useEffect(() => {
+    setCurrentVid(searchParams.get(VID));
+  }, [location]);
 
   useEffect(() => {
     async function getVideoList() {
@@ -27,7 +36,7 @@ function useVideoInfo(vid) {
     getVideoList();
   }, [currentVid]);
 
-  return { data, loading, error, mutate };
+  return { data, loading, error, vid: currentVid };
 }
 
 export default useVideoInfo;

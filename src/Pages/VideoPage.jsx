@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
-import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavBar from 'Components/NavBar';
 import VideoContainer from 'Components/VideoContainer';
 import VideoInfo from 'Components/Video/VideoInfo';
@@ -14,12 +14,9 @@ import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useVideoList from 'Cores/Hooks/useVideoList';
 
 function VideoPage() {
-  const location = useLocation();
   const navigator = useNavigate();
-  const [searchParams] = useSearchParams();
-  const vid = searchParams.get('vid');
   const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
-  const { data: videoInfo, loading: videoInfoLoading, error, mutate } = useVideoInfo(vid);
+  const { data: videoInfo, loading: videoInfoLoading, error, vid } = useVideoInfo();
   const { data: videoList, loading: videoListLoading } = useVideoList();
   const toggle = () => setIsMobileCommentOpen(!isMobileCommentOpen);
 
@@ -42,10 +39,6 @@ function VideoPage() {
         pathname: '/NOTFOUND',
       });
   }, [error]);
-
-  useEffect(() => {
-    mutate(searchParams.get('vid'));
-  }, [location]);
 
   return (
     <Container>
