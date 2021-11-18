@@ -7,6 +7,7 @@ import { ReactComponent as DotMenuIC } from '../Assets/icon/Navbar/dotMenuIC.svg
 import { ReactComponent as LoginIC } from '../Assets/icon/Navbar/loginIC.svg';
 import { ReactComponent as DarkModeChangeIC } from '../Assets/icon/Navbar/darkModeChangeIC.svg';
 import useDarkmode from '../Cores/Hooks/useDarkmode';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   const { currentMode, toggleMode } = useDarkmode();
@@ -17,7 +18,9 @@ function NavBar() {
 
   return (
     <StyledNavBar>
-      <Logo alt="logo" />
+      <Link to="/">
+        <Logo alt="logo" />
+      </Link>
       <StyledUL>
         <li onClick={handlerClick}>
           {currentMode === 'light' ? <ModeChange alt="modeChange" /> : <DarkModeChange alt="modeChange" />}
