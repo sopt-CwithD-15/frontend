@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import newIcon from 'Assets/icon/new.png';
+import newIcon from 'Assets/icon/new.svg';
 import colors from 'Constants/colors';
 
 function VideoInfo({ viewCount, uploadDate }) {
