@@ -31,7 +31,11 @@ function Comment() {
             <span>53</span>
           </IconWrapper>
           <IconWrapper>
+<<<<<<< HEAD
+            <img src={reReply} alt={reReply} id="except" />
+=======
             <img src={reReply} alt={reReply} />
+>>>>>>> comment
             <BlueText>
               답글 2개 <img src={blueDown} alt="blueDown" />
             </BlueText>
@@ -48,7 +52,12 @@ const StyledComment = styled.article`
   gap: 1rem;
   padding: 1rem 1.5rem;
 
+<<<<<<< HEAD
+  border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  color: ${({ theme }) => colors[theme.currentMode].iconText};
+=======
   border-top: 0.02rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+>>>>>>> comment
 `;
 
 const UserThumbnail = styled.div`
@@ -76,7 +85,10 @@ const CommentAuthor = styled.h2`
   line-height: 1.4rem;
   font-size: 1.2rem;
   font-weight: bolder;
+<<<<<<< HEAD
+=======
   color: ${({ theme }) => colors[theme.currentMode].iconText};
+>>>>>>> comment
 `;
 
 const CommentDate = styled.span`
@@ -111,6 +123,13 @@ const IconWrapper = styled.div`
   & > span {
     font-size: 1rem;
   }
+<<<<<<< HEAD
+
+  & > img:not(#except) {
+    filter: ${({ theme }) => (theme.currentMode === 'light' ? 'brightness(0) invert(0)' : 'brightness(1) invert(1)')};
+  }
+=======
+>>>>>>> comment
 `;
 
 const BlueText = styled.span`

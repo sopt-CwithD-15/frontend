@@ -13,8 +13,10 @@ export default {
     copyRightText: '#8A8A8A',
     searchTabBorder: '#ECECEC',
     searchBarBg: 'white',
+<<<<<<< HEAD
     progressBg: 'rgba(0, 0, 0, 0.8)',
-    searchBarBg: 'white',
+=======
+>>>>>>> comment
     channelInfoBorder: '#959595',
     iconText: '#030303',
     mobileCommentListHeader: '#f4f4f4',
@@ -32,10 +34,14 @@ export default {
     filterBarActiveBg: '#8A8A8A',
     copyRightText: '#8A8A8A',
     searchTabBorder: '#121212',
+<<<<<<< HEAD
     searchBarBg: '#121212',
     progressBg: 'rgba(0, 0, 0, 0.8)',
-    searchTabBorder: '#121212',
     channelInfoBorder: '#7c7c7c',
+    iconText: 'white',
+=======
+    channelInfoBorder: '#7c7c7c',
+>>>>>>> comment
     mobileCommentListHeader: '#212121',
   },
 };
