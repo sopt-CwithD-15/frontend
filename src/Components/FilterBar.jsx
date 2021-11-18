@@ -63,5 +63,8 @@ const RefreshImg = styled(refreshIC)`
   width: 3.2rem;
   height: 3.2rem;
   margin-right: 0.7rem;
+  & > * {
+    fill: ${({ theme }) => colors[theme.currentMode].navBarLogin};
+  }
 `;
 export default FilterBar;
