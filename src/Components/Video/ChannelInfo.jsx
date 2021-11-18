@@ -26,7 +26,7 @@ const StyledChannelInfo = styled.div`
 `;
 
 const ChannelProfile = styled.div`
-  padding: 1.4rem 0;
+  padding: 1.2rem 0;
 
   & img {
     width: 3.3rem;
