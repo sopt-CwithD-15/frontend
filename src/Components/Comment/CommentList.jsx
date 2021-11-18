@@ -5,6 +5,7 @@ import colors from 'Constants/colors';
 import reply from 'Assets/icon/reply.svg';
 import filter from 'Assets/icon/filter.svg';
 import close from 'Assets/icon/close.svg';
+import me from 'Assets/icon/me-thumbnail.svg';
 
 const temporalComments = [
   {
@@ -38,6 +39,13 @@ function CommentList({ comments = temporalComments, toggle }) {
               </CloseButton>
             </RightWrapper>
           </CommentHeader>
+          <CommentWarnText>
+            댓글을 사용할 때는 타인을 존중하고 <span>커뮤니티 가이드</span> 를 준수해야 합니다.
+          </CommentWarnText>
+          <InputWrapper>
+            <img src={me} alt="my-thumbnail" />
+            <CommentInput placeholder="공개 댓글 추가..." />
+          </InputWrapper>
           <CommentBody>
             <Comment />
             <Comment />
@@ -67,8 +75,49 @@ const CommentHeader = styled.header`
   align-items: center;
   padding: 1.5rem 1rem;
 
-  background-color: #f4f4f4;
-  border-bottom: 0.02rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  background-color: ${({ theme }) => colors[theme.currentMode].mobileCommentListHeader};
+
+  & img {
+    filter: ${({ theme }) => (theme.currentMode === 'dark' ? 'brightness(1) invert(1)' : 'brightness(0) invert(0)')};
+  }
+`;
+
+const CommentWarnText = styled.p`
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: ${({ theme }) => colors[theme.currentMode].iconText};
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+  letter-spacing: -0.03rem;
+  & > span {
+    color: ${colors.light.blue};
+  }
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  padding-top: 0;
+`;
+
+const CommentInput = styled.input`
+  width: 100%;
+  color: ${({ theme }) => colors[theme.currentMode].iconText};
+  &::placeholder {
+    color: ${({ theme }) => colors[theme.currentMode].iconText};
+    font-size: 1.2rem;
+    letter-spacing: -0.03rem;
+  }
+
+  &:hover {
+    outline: none;
+  }
+
+  background-color: transparent;
+  border: none;
 `;
 
 const ReplyWrapper = styled.div`
@@ -79,6 +128,10 @@ const ReplyWrapper = styled.div`
   & > img {
     width: 1.6rem;
     height: 1.2rem;
+  }
+
+  & > span {
+    color: ${({ theme }) => colors[theme.currentMode].iconText};
   }
 `;
 
@@ -99,6 +152,9 @@ const CloseButton = styled.button`
   align-items: center;
 `;
 
-const CommentBody = styled.ul``;
+const CommentBody = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
 
 export default CommentList;
