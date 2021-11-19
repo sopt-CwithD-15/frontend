@@ -2,13 +2,16 @@ import styled from 'styled-components';
 import NavBar from 'Components/Common/NavBar';
 import VideoContainer from 'Components/Video/VideoContainer';
 import FilterBar from 'Components/Common/FilterBar';
-import useVideoList from 'Cores/Hooks/useVideoList';
 import SideBar from 'Components/SideBar';
 import Responsive from 'Components/Responsive';
 import colors from 'Constants/colors';
+import useAPI from 'Cores/Hooks/useAPI';
 
 function MainPage() {
-  const { loading, data } = useVideoList();
+  const { loading, data } = useAPI({
+    method: 'GET',
+    url: '/video',
+  });
   return (
     <Container>
       <NavBar />

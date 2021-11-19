@@ -11,13 +11,16 @@ import CommentHandler from 'Components/Comment/CommentHandler';
 import ChannelInfo from 'Components/Video/ChannelInfo';
 import colors from 'Constants/colors';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
-import useVideoList from 'Cores/Hooks/useVideoList';
+import useAPI from 'Cores/Hooks/useAPI';
 
 function VideoPage() {
   const navigator = useNavigate();
   const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
   const { data: videoInfo, loading: videoInfoLoading, error, vid } = useVideoInfo();
-  const { data: videoList, loading: videoListLoading } = useVideoList();
+  const { data: videoList, loading: videoListLoading } = useAPI({
+    method: 'GET',
+    url: '/video',
+  });
   const toggle = () => setIsMobileCommentOpen(!isMobileCommentOpen);
 
   const getVideoTemplate = useCallback(
