@@ -18,26 +18,29 @@
 // src directory structure
 ├── App.jsx
 ├── Assets
+│   ├── icon
+│   └── img
 ├── Components
 │   ├── Comment
 │   │   ├── CommentHandler.jsx
 │   │   ├── CommentList.jsx
 │   │   ├── CommentToggleButton.jsx
 │   │   └── index.jsx
-│   ├── FilterBar.jsx
-│   ├── NavBar.jsx
+│   ├── Common
+│   │   ├── FilterBar.jsx
+│   │   └── NavBar.jsx
 │   ├── Responsive.jsx
 │   ├── SideBar.jsx
-│   ├── Video
-│   │   ├── ChannelInfo.jsx
-│   │   ├── VideoIcons.jsx
-│   │   ├── VideoInfo.jsx
-│   │   ├── VideoProgressBar.jsx
-│   │   ├── VideoRuntime.jsx
-│   │   ├── VideoTag.jsx
-│   │   ├── VideoTitle.jsx
-│   │   └── index.jsx
-│   └── VideoContainer.jsx
+│   └── Video
+│       ├── ChannelInfo.jsx
+│       ├── VideoContainer.jsx
+│       ├── VideoIcons.jsx
+│       ├── VideoInfo.jsx
+│       ├── VideoProgressBar.jsx
+│       ├── VideoRuntime.jsx
+│       ├── VideoTag.jsx
+│       ├── VideoTitle.jsx
+│       └── index.jsx
 ├── Constants
 │   ├── colors.js
 │   └── deviceInfo.js
@@ -45,9 +48,9 @@
 │   ├── Contexts
 │   │   └── index.js
 │   ├── Hooks
+│   │   ├── useAPI.jsx
 │   │   ├── useDarkmode.jsx
-│   │   ├── useVideoInfo.jsx
-│   │   └── useVideoList.jsx
+│   │   └── useVideoInfo.jsx
 │   ├── api.js
 │   └── router.jsx
 ├── Pages
@@ -58,6 +61,8 @@
 │   ├── DarkModeProvider.jsx
 │   ├── globalStyle.js
 │   └── mediaQuery.js
+├── Utils
+│   └── shortenNumber.js
 ├── index.js
 ``` 
 
