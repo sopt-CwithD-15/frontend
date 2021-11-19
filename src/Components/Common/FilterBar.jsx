@@ -1,7 +1,7 @@
-import colors from 'Constants/colors';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { ReactComponent as refreshIC } from '../Assets/icon/Filterbar/refreshIC.svg';
+import colors from 'Constants/colors';
+import { ReactComponent as refreshIC } from 'Assets/icon/Filterbar/refreshIC.svg';
 
 function FilterBar() {
   const [click, setClick] = useState('all');
