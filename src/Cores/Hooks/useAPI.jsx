@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { client } from 'Cores/api';
 
 function useAPI(apiInfo) {
@@ -29,13 +28,5 @@ function useAPI(apiInfo) {
 
   return { data, loading, error, mutate };
 }
-
-useAPI.proptypes = {
-  apiInfo: PropTypes.shape({
-    method: PropTypes.oneOf(['post', 'get']),
-    url: PropTypes.string.isRequired,
-    body: PropTypes.any,
-  }).isRequired,
-};
 
 export default useAPI;
