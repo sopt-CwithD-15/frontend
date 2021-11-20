@@ -1,7 +1,7 @@
 import colors from 'Constants/colors';
 import React from 'react';
 import styled from 'styled-components';
-import { ReactComponent as finderIC } from '../Assets/icon/Filterbar/finderIC.svg';
+import { ReactComponent as finderIC } from 'Assets/icon/Filterbar/finderIC.svg';
 
 const SideBar = () => {
   return (

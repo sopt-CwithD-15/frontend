@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import NavBar from 'Components/Common/NavBar';
 import VideoContainer from 'Components/Video/VideoContainer';
 import FilterBar from 'Components/Common/FilterBar';
-import SideBar from 'Components/SideBar';
+import SideBar from 'Components/Common/SideBar';
 import Responsive from 'Components/Responsive';
 import colors from 'Constants/colors';
 import useAPI from 'Cores/Hooks/useAPI';
@@ -12,6 +12,7 @@ function MainPage() {
     method: 'GET',
     url: '/video',
   });
+
   return (
     <Container>
       <NavBar />
