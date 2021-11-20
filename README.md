@@ -1,4 +1,4 @@
-# WE-SOPT 클라이언트 & 디자인 세미나
+# SOPKATHON :fire:
 
 ## 프로젝트 구성
 
