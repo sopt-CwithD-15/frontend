@@ -6,6 +6,7 @@ import SideBar from 'Components/Common/SideBar';
 import Responsive from 'Components/Responsive';
 import colors from 'Constants/colors';
 import useAPI from 'Cores/Hooks/useAPI';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function MainPage() {
   const { loading, data } = useAPI({
@@ -30,7 +31,11 @@ function MainPage() {
 
 const Container = styled.main`
   width: 100%;
-  background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
+  background-color: ${({ theme }) => (theme.currentMode === 'dark' ? 'black' : '#F9F9F9')};
+
+  ${applyMediaQuery('mobile')} {
+    background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
+  }
 `;
 
 const Wrapper = styled.div`
