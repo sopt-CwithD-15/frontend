@@ -81,6 +81,7 @@ const StyledVideo = styled.article`
   padding: 1rem;
   ${applyMediaQuery('mobile')} {
     flex-direction: column;
+    padding: 0;
   }
 `;
 
@@ -162,6 +163,10 @@ const VideoInfoWrapper = styled.div`
 const PlayListWrapper = styled.div`
   display: flex;
   flex: 1;
+
+  & > svg:hover {
+    cursor: pointer;
+  }
 
   & svg path {
     ${({ theme }) =>
