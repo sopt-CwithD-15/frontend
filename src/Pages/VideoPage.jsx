@@ -12,6 +12,7 @@ import ChannelInfo from 'Components/Video/ChannelInfo';
 import colors from 'Constants/colors';
 import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import useAPI from 'Cores/Hooks/useAPI';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function VideoPage() {
   const navigator = useNavigate();
@@ -92,7 +93,15 @@ const InfoContainer = styled.div`
 
 const IFrameWrapper = styled.div`
   position: relative;
-  padding-top: 20.3rem;
+  ${applyMediaQuery('mobile')} {
+    padding-top: 20.3rem;
+  }
+  ${applyMediaQuery('tablet')} {
+    padding-top: 43rem;
+  }
+  ${applyMediaQuery('desktop')} {
+    padding-top: 82.8rem;
+  }
 `;
 
 export default VideoPage;

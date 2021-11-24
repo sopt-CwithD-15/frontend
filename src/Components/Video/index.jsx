@@ -163,6 +163,7 @@ const VideoInfoWrapper = styled.div`
 const PlayListWrapper = styled.div`
   display: flex;
   flex: 1;
+  gap: 1.5rem;
 
   & > svg:hover {
     cursor: pointer;
