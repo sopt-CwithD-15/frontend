@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components';
-import { useNavigate, createSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import styled, { css, ThemeProvider as SizeProvider } from 'styled-components';
+import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 import VideoInfo from './VideoInfo';
 import VideoProgressBar from './VideoProgressBar';
 import VideoTitle from './VideoTitle';
 import VideoTag from './VideoTag';
-
 import VideoRuntime from './VideoRuntime';
 import Responsive from 'Components/Responsive';
 import { applyMediaQuery } from 'Style/mediaQuery';
@@ -15,61 +15,77 @@ import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
 
 function Video({ videoInfo }) {
-  const navigator = useNavigate();
   const { id, thumbnail, tags, viewCount, uploadDate, runtime, title, author, desc } = videoInfo;
+  const navigator = useNavigate();
+  const location = useLocation();
+  const [isVideoPage, setIsVideoPage] = useState(false);
+
+  const hideOnVideoPage = (element) => !isVideoPage && element;
+
+  useEffect(() => {
+    if (location) setIsVideoPage(location.pathname === '/video');
+  }, [location]);
+
   return (
-    <StyledVideo
-      onClick={() =>
-        navigator({
-          pathname: '/video',
-          search: `?${createSearchParams({
-            vid: id,
-          })}`,
-        })
-      }>
-      <Wrapper>
-        <VideoThumbnail>
-          <img src={thumbnail.video} alt="video-thumbnail" />
-          <VideoProgressBar />
-        </VideoThumbnail>
-        <ToolWrapper>
-          <Responsive mobile>
-            <FlexWrapper>
-              <UserThumbnail>
-                <img src={thumbnail.user} alt="user-thumbnail" />
-              </UserThumbnail>
-              <VideoTag tagList={tags} />
-            </FlexWrapper>
-          </Responsive>
-          <VideoRuntime runtime={runtime} />
-        </ToolWrapper>
-      </Wrapper>
+    <SizeProvider
+      theme={{
+        small: isVideoPage,
+      }}>
+      <StyledVideo
+        onClick={() =>
+          navigator({
+            pathname: '/video',
+            search: `?${createSearchParams({
+              vid: id,
+            })}`,
+          })
+        }>
+        <Wrapper>
+          <VideoThumbnail>
+            <img src={thumbnail.video} alt="video-thumbnail" />
+            <VideoProgressBar />
+          </VideoThumbnail>
+          <ToolWrapper>
+            <Responsive mobile>
+              <FlexWrapper>
+                <UserThumbnail>
+                  <img src={thumbnail.user} alt="user-thumbnail" />
+                </UserThumbnail>
+                <VideoTag tagList={tags} />
+              </FlexWrapper>
+            </Responsive>
+            {hideOnVideoPage(<VideoRuntime runtime={runtime} />)}
+          </ToolWrapper>
+        </Wrapper>
 
-      <Responsive mobile>
-        <VideoTitle title={title} />
-        <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
-      </Responsive>
-
-      <Responsive tablet desktop>
-        <VideoInfoWrapper>
+        <Responsive mobile>
           <VideoTitle title={title} />
           <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
-          <UserInfoWrapper>
-            <UserThumbnail>
-              <img src={thumbnail.user} alt="user-thumbnail" />
-            </UserThumbnail>
-            <UserName>{author}</UserName>
-          </UserInfoWrapper>
-          <VideoDescription>{desc}</VideoDescription>
-        </VideoInfoWrapper>
+        </Responsive>
 
-        <PlayListWrapper>
-          <AddList />
-          <PlayList />
-          <DotMenu />
-        </PlayListWrapper>
-      </Responsive>
-    </StyledVideo>
+        <Responsive tablet desktop>
+          <VideoInfoWrapper>
+            <VideoTitle title={title} />
+            <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+            <UserInfoWrapper>
+              {hideOnVideoPage(
+                <UserThumbnail>
+                  <img src={thumbnail.user} alt="user-thumbnail" />
+                </UserThumbnail>,
+              )}
+              <UserName>{author}</UserName>
+            </UserInfoWrapper>
+            {hideOnVideoPage(<VideoDescription>{desc}</VideoDescription>)}
+          </VideoInfoWrapper>
+
+          <PlayListWrapper>
+            <AddList />
+            <PlayList />
+            <DotMenu />
+          </PlayListWrapper>
+        </Responsive>
+      </StyledVideo>
+    </SizeProvider>
   );
 }
 
@@ -78,22 +94,32 @@ const StyledVideo = styled.article`
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 1.5rem 0rem 1rem;
   ${applyMediaQuery('mobile')} {
     flex-direction: column;
     padding: 0;
+    gap: 0;
   }
 `;
 
 const VideoThumbnail = styled.div`
   position: relative;
   padding-top: 20.3rem;
+  border-radius: 0 0 8px 8px;
 
   ${applyMediaQuery('mobile')} {
     border-radius: 0 0 0 72px;
   }
 
-  border-radius: 0 0 8px 8px;
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        padding-top: 7.2rem;
+        border-radius: 0 0 4px 4px;
+      `};
+  }
+
   overflow: hidden;
 
   & > img {
@@ -123,10 +149,18 @@ const UserThumbnail = styled.div`
 `;
 
 const Wrapper = styled.div`
-  flex: 3.3;
+  flex: 3;
   ${applyMediaQuery('mobile')} {
     flex: unset;
   }
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        flex: 0.77;
+      `};
+  }
+
   position: relative;
 `;
 
@@ -156,13 +190,14 @@ const FlexWrapper = styled.div`
 const VideoInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   flex: 3;
+
+  gap: 0.5rem;
 `;
 
 const PlayListWrapper = styled.div`
+  margin-left: auto;
   display: flex;
-  flex: 1;
   gap: 1.5rem;
 
   & > svg:hover {
@@ -190,6 +225,14 @@ const UserInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        order: 1;
+      `};
+  }
 `;
 
 const UserName = styled.span`

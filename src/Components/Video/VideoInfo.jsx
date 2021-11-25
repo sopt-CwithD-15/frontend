@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import newIcon from 'Assets/icon/new.svg';
 import colors from 'Constants/colors';
 import { applyMediaQuery } from 'Style/mediaQuery';
@@ -24,6 +24,13 @@ const StyledVideoInfo = styled.div`
     padding: 0 0.5rem;
   }
 
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        order: 2;
+      `};
+  }
   & > span {
     color: ${({ theme }) => colors[theme.currentMode].subText};
     font-family: Roboto;
