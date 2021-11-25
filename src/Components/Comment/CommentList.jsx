@@ -6,6 +6,7 @@ import reply from 'Assets/icon/reply.svg';
 import filter from 'Assets/icon/filter.svg';
 import close from 'Assets/icon/close.svg';
 import meWhite from 'Assets/icon/me-thumbnail-white.svg';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 const temporalComments = [
   {
@@ -25,9 +26,9 @@ const temporalComments = [
 function CommentList({ comments = temporalComments, toggle }) {
   return (
     <>
-      <Responsive mobile>
-        <CommentContainer>
-          <CommentHeader>
+      <CommentContainer>
+        <CommentHeader>
+          <Responsive mobile>
             <ReplyWrapper>
               <img src={reply} alt="reply-icon" />
               <span>{comments.length}</span>
@@ -38,27 +39,39 @@ function CommentList({ comments = temporalComments, toggle }) {
                 <img src={close} alt="close-icon" />
               </CloseButton>
             </RightWrapper>
-          </CommentHeader>
+          </Responsive>
+          <Responsive tablet desktop>
+            <ReplyWrapper>
+              <img src={reply} alt="reply-icon" />
+              <span>{`댓글 ${comments.length}`}</span>
+            </ReplyWrapper>
+            <RightWrapper>
+              <CommonButton>내 댓글 바로보기</CommonButton>
+              <CommonButton>
+                <img src={filter} alt="filter-icon" />
+                <span>정렬</span>
+              </CommonButton>
+            </RightWrapper>
+          </Responsive>
+        </CommentHeader>
+        <Responsive mobile>
           <CommentWarnText>
             댓글을 사용할 때는 타인을 존중하고 <span>커뮤니티 가이드</span> 를 준수해야 합니다.
           </CommentWarnText>
-          <InputWrapper>
-            <img src={meWhite} alt="my-thumbnail" />
-            <CommentInput placeholder="공개 댓글 추가..." />
-          </InputWrapper>
-          <CommentBody>
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-          </CommentBody>
-        </CommentContainer>
-      </Responsive>
+        </Responsive>
+        <InputWrapper>
+          <img src={meWhite} alt="my-thumbnail" />
+          <CommentInput placeholder="공개 댓글 추가..." />
+        </InputWrapper>
+        <CommentBody>
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+          <Comment />
+        </CommentBody>
+      </CommentContainer>
     </>
   );
 }
@@ -66,6 +79,12 @@ function CommentList({ comments = temporalComments, toggle }) {
 const CommentContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
+  order: 1;
+
+  border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  ${applyMediaQuery('mobile')} {
+    border: none;
+  }
 `;
 
 const CommentHeader = styled.header`
@@ -73,9 +92,11 @@ const CommentHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem;
 
-  background-color: ${({ theme }) => colors[theme.currentMode].mobileCommentListHeader};
+  ${applyMediaQuery('mobile')} {
+    background-color: ${({ theme }) => colors[theme.currentMode].mobileCommentListHeader};
+  }
 
   & img {
     filter: ${({ theme }) => (theme.currentMode === 'dark' ? 'brightness(1) invert(1)' : 'brightness(0) invert(0)')};
@@ -124,6 +145,10 @@ const ReplyWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  font-size: 1.4rem;
+  ${applyMediaQuery('mobile')} {
+    font-size: inherit;
+  }
 
   & > img {
     width: 1.6rem;
@@ -140,6 +165,10 @@ const RightWrapper = styled(ReplyWrapper)`
     width: 1.2rem;
   }
 
+  & > * {
+    color: ${({ theme }) => colors[theme.currentMode].iconText};
+  }
+
   display: flex;
   gap: 1rem;
 `;
@@ -150,6 +179,10 @@ const CloseButton = styled.button`
 
   display: flex;
   align-items: center;
+`;
+
+const CommonButton = styled(CloseButton)`
+  gap: 0.5rem;
 `;
 
 const CommentBody = styled.ul`

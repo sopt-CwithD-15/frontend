@@ -17,6 +17,10 @@ function CommentHandler(props) {
           <CommentList toggle={toggle} />
         )}
       </Responsive>
+
+      <Responsive tablet desktop>
+        <CommentList toggle={toggle} />
+      </Responsive>
     </>
   );
 }

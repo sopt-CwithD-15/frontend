@@ -6,6 +6,7 @@ import reReply from 'Assets/icon/re-reply.svg';
 import like from 'Assets/icon/like_no_margin.svg';
 import unlike from 'Assets/icon/unlike_no_margin.svg';
 import blueDown from 'Assets/icon/blue-down.svg';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function Comment() {
   return (
@@ -48,7 +49,9 @@ const StyledComment = styled.article`
   gap: 1rem;
   padding: 1rem 1.5rem;
 
-  border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  ${applyMediaQuery('mobile')} {
+    border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  }
   color: ${({ theme }) => colors[theme.currentMode].iconText};
 `;
 

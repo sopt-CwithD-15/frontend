@@ -72,8 +72,9 @@ function VideoPage() {
 }
 
 const Container = styled.main`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
   position: relative;
   background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
 
@@ -90,6 +91,10 @@ const InfoContainer = styled.div`
   flex-direction: column;
   background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
   padding: 0.5rem;
+  gap: 0.5rem;
+  ${applyMediaQuery('mobile')} {
+    gap: 0;
+  }
 `;
 
 const IFrameWrapper = styled.div`
