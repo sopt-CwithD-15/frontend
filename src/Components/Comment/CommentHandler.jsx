@@ -3,23 +3,27 @@ import CommentToggleButton from './CommentToggleButton';
 import CommentList from './CommentList';
 import profile from 'Assets/icon/profileImage.svg';
 
-const temporalText = 'We can all agree that MAVERICK is one of their POWERFUL cb!!!!! This is us!';
-const temporalComment = { commentCount: 415, thumbnail: profile, text: temporalText };
-
 function CommentHandler(props) {
-  const { isMobileCommentOpen, toggle } = props;
+  const { isMobileCommentOpen, toggle, comments } = props;
   return (
     <>
       <Responsive mobile>
         {!isMobileCommentOpen ? (
-          <CommentToggleButton toggle={toggle} initComment={temporalComment} />
+          <CommentToggleButton
+            toggle={toggle}
+            initComment={{
+              commentCount: comments.length,
+              thumbnail: profile,
+              text: comments.length ? comments[0].content : '등록된 댓글이 없습니다.',
+            }}
+          />
         ) : (
-          <CommentList toggle={toggle} />
+          <CommentList toggle={toggle} comments={comments} />
         )}
       </Responsive>
 
       <Responsive tablet desktop>
-        <CommentList toggle={toggle} />
+        <CommentList toggle={toggle} comments={comments} />
       </Responsive>
     </>
   );

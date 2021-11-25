@@ -8,22 +8,9 @@ import close from 'Assets/icon/close.svg';
 import meWhite from 'Assets/icon/me-thumbnail-white.svg';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
-const temporalComments = [
-  {
-    author: 'Julia Kim',
-    text: 'Hello this is my text temporla test case comments',
-    like: '1.2만',
-    unlike: 12,
-  },
-  {
-    author: 'Julia Kim',
-    text: 'Hello this is my text temporla test case comments',
-    like: '2.1천',
-    unlike: 5,
-  },
-];
+function CommentList({ comments, toggle }) {
+  const showComment = () => comments.map((comment) => <Comment data={comment} key={comment.commentID} />);
 
-function CommentList({ comments = temporalComments, toggle }) {
   return (
     <>
       <CommentContainer>
@@ -63,14 +50,7 @@ function CommentList({ comments = temporalComments, toggle }) {
           <img src={meWhite} alt="my-thumbnail" />
           <CommentInput placeholder="공개 댓글 추가..." />
         </InputWrapper>
-        <CommentBody>
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-        </CommentBody>
+        <CommentBody>{showComment()}</CommentBody>
       </CommentContainer>
     </>
   );

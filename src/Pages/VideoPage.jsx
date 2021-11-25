@@ -63,7 +63,9 @@ function VideoPage() {
           />
         </>
       )}
-      <CommentHandler isMobileCommentOpen={isMobileCommentOpen} toggle={toggle} />
+      {!videoInfoLoading && videoInfo && (
+        <CommentHandler isMobileCommentOpen={isMobileCommentOpen} toggle={toggle} comments={videoInfo.comments} />
+      )}
       {videoInfo && videoList && !videoListLoading && !isMobileCommentOpen && (
         <VideoContainer videoList={videoList.filter((video) => video.id !== videoInfo.id)} />
       )}

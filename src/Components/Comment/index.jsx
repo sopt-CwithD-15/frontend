@@ -8,7 +8,9 @@ import unlike from 'Assets/icon/unlike_no_margin.svg';
 import blueDown from 'Assets/icon/blue-down.svg';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
-function Comment() {
+function Comment({ data }) {
+  const { commenter, createdAt, content } = data;
+  const { nickname } = commenter;
   return (
     <StyledComment>
       <UserThumbnail>
@@ -16,12 +18,10 @@ function Comment() {
       </UserThumbnail>
       <CommentContainer>
         <CommentHeader>
-          <CommentAuthor>김밥말아</CommentAuthor>
-          <CommentDate>7시간 전</CommentDate>
+          <CommentAuthor>{nickname}</CommentAuthor>
+          <CommentDate>{createdAt}</CommentDate>
         </CommentHeader>
-        <CommentBody>
-          We can all agree that MAVERICK is one of their POWERFUL cb!!!!! VISUALS + SONG + CHOREOGRAPY = POWERFUL
-        </CommentBody>
+        <CommentBody>{content}</CommentBody>
         <CommentFooter>
           <IconWrapper>
             <img src={like} alt="like" />
