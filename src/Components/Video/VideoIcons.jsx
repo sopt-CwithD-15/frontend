@@ -22,12 +22,12 @@ function VideoIcons(props) {
     <StyledVideoIcons>
       <IconLabelButton
         src={isLikeClicked ? filledLikeIcon : likeIcon}
-        label={shortenNumber(like)}
+        label={like}
         alt="like"
         onClick={handleLikeClick}></IconLabelButton>
       <IconLabelButton
         src={isUnlikeClicked ? filledUnlikeIcon : unlikeIcon}
-        label={shortenNumber(unlike)}
+        label={unlike}
         alt="unlike"
         onClick={handleUnlikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
