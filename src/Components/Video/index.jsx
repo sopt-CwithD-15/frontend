@@ -1,56 +1,125 @@
-import styled from 'styled-components';
-import { useNavigate, createSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import styled, { css, ThemeProvider as SizeProvider } from 'styled-components';
+import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
 import VideoInfo from './VideoInfo';
 import VideoProgressBar from './VideoProgressBar';
 import VideoTitle from './VideoTitle';
 import VideoTag from './VideoTag';
-
 import VideoRuntime from './VideoRuntime';
+import Responsive from 'Components/Responsive';
+import { applyMediaQuery } from 'Style/mediaQuery';
+
+import colors from 'Constants/colors';
+import { ReactComponent as AddList } from 'Assets/icon/addList.svg';
+import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
+import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
 
 function Video({ videoInfo }) {
+  const { id, thumbnail, tags, viewCount, uploadDate, runtime, title, author, desc } = videoInfo;
   const navigator = useNavigate();
-  const { id, thumbnail, tags, viewCount, uploadDate, runtime, title } = videoInfo;
+  const location = useLocation();
+  const [isVideoPage, setIsVideoPage] = useState(false);
+
+  const hideOnVideoPage = (element) => !isVideoPage && element;
+
+  useEffect(() => {
+    if (location) setIsVideoPage(location.pathname === '/video');
+  }, [location]);
+
   return (
-    <StyledVideo
-      onClick={() =>
-        navigator({
-          pathname: '/video',
-          search: `?${createSearchParams({
-            vid: id,
-          })}`,
-        })
-      }>
-      <VideoProgressBar />
-      <Wrapper>
-        <VideoThumbnail>
-          <img src={thumbnail.video} alt="video-thumbnail" />
-        </VideoThumbnail>
-        <ToolWrapper>
-          <FlexWrapper>
-            <UserThumbnail>
-              <img src={thumbnail.user} alt="user-thumbnail" />
-            </UserThumbnail>
-            <VideoTag tagList={tags} />
-          </FlexWrapper>
-          <VideoRuntime runtime={runtime} />
-        </ToolWrapper>
-      </Wrapper>
-      <VideoTitle title={title} />
-      <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
-    </StyledVideo>
+    <SizeProvider
+      theme={{
+        small: isVideoPage,
+      }}>
+      <StyledVideo
+        onClick={() =>
+          navigator({
+            pathname: '/video',
+            search: `?${createSearchParams({
+              vid: id,
+            })}`,
+          })
+        }>
+        <Wrapper>
+          <VideoThumbnail>
+            <img src={thumbnail.video} alt="video-thumbnail" />
+            <VideoProgressBar />
+          </VideoThumbnail>
+          <ToolWrapper>
+            <Responsive mobile>
+              <FlexWrapper>
+                <UserThumbnail>
+                  <img src={thumbnail.user} alt="user-thumbnail" />
+                </UserThumbnail>
+                <VideoTag tagList={tags} />
+              </FlexWrapper>
+            </Responsive>
+            {hideOnVideoPage(<VideoRuntime runtime={runtime} />)}
+          </ToolWrapper>
+        </Wrapper>
+
+        <Responsive mobile>
+          <VideoTitle title={title} />
+          <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+        </Responsive>
+
+        <Responsive tablet desktop>
+          <VideoInfoWrapper>
+            <VideoTitle title={title} />
+            <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+            <UserInfoWrapper>
+              {hideOnVideoPage(
+                <UserThumbnail>
+                  <img src={thumbnail.user} alt="user-thumbnail" />
+                </UserThumbnail>,
+              )}
+              <UserName>{author}</UserName>
+            </UserInfoWrapper>
+            {hideOnVideoPage(<VideoDescription>{desc}</VideoDescription>)}
+          </VideoInfoWrapper>
+
+          <PlayListWrapper>
+            <AddList />
+            <PlayList />
+            <DotMenu />
+          </PlayListWrapper>
+        </Responsive>
+      </StyledVideo>
+    </SizeProvider>
   );
 }
 
 const StyledVideo = styled.article`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem 1.5rem 0rem 1rem;
+  ${applyMediaQuery('mobile')} {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+  }
 `;
 
 const VideoThumbnail = styled.div`
-  padding-top: 203px;
   position: relative;
-  border-radius: 0 0 0 72px;
+  padding-top: 20.3rem;
+  border-radius: 0 0 8px 8px;
+
+  ${applyMediaQuery('mobile')} {
+    border-radius: 0 0 0 72px;
+  }
+
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        padding-top: 7.2rem;
+        border-radius: 0 0 4px 4px;
+      `};
+  }
+
   overflow: hidden;
 
   & > img {
@@ -64,11 +133,15 @@ const VideoThumbnail = styled.div`
 `;
 
 const UserThumbnail = styled.div`
-  width: 4.6rem;
-  height: 4.6rem;
+  ${applyMediaQuery('mobile')} {
+    width: 4.6rem;
+    height: 4.6rem;
+  }
+  width: 2.3rem;
+  height: 2.3rem;
+
   border-radius: 50%;
   overflow: hidden;
-  z-index: 1001;
 
   & > img {
     max-width: 100%;
@@ -76,18 +149,34 @@ const UserThumbnail = styled.div`
 `;
 
 const Wrapper = styled.div`
+  flex: 3;
+  ${applyMediaQuery('mobile')} {
+    flex: unset;
+  }
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        flex: 0.77;
+      `};
+  }
+
   position: relative;
 `;
 
 const ToolWrapper = styled.div`
   position: absolute;
-  bottom: -0.5rem;
-
   padding: 0 0.5rem;
   width: 100%;
   height: fit-content;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  bottom: 0.5rem;
+  ${applyMediaQuery('mobile')} {
+    justify-content: space-between;
+    bottom: -0.5rem;
+  }
+
   align-items: center;
 `;
 
@@ -96,6 +185,62 @@ const FlexWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+`;
+
+const VideoInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+
+  gap: 0.5rem;
+`;
+
+const PlayListWrapper = styled.div`
+  margin-left: auto;
+  display: flex;
+  gap: 1.5rem;
+
+  & > svg:hover {
+    cursor: pointer;
+  }
+
+  & svg path {
+    ${({ theme }) =>
+      theme.currentMode === 'dark' &&
+      css`
+        fill: white;
+      `}
+  }
+`;
+
+const VideoDescription = styled.p`
+  color: ${({ theme }) => colors[theme.currentMode].subText};
+
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+  letter-spacing: -0.03rem;
+`;
+
+const UserInfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  ${applyMediaQuery('tablet')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        order: 1;
+      `};
+  }
+`;
+
+const UserName = styled.span`
+  color: ${({ theme }) => colors[theme.currentMode].subText};
+
+  font-size: 1rem;
+  line-height: 1.2rem;
+  letter-spacing: -0.03rem;
 `;
 
 export default Video;

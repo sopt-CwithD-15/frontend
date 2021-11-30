@@ -8,6 +8,7 @@ import shareIcon from 'Assets/icon/arrow.svg';
 import saveIcon from 'Assets/icon/list1.svg';
 import reportIcon from 'Assets/icon/flag.svg';
 import colors from 'Constants/colors';
+import { shortenNumber } from 'Utils/shortenNumber';
 
 function VideoIcons(props) {
   const [isLikeClicked, setLikeClicked] = useState(false);
@@ -22,12 +23,12 @@ function VideoIcons(props) {
     <StyledVideoIcons>
       <IconLabelButton
         src={isLikeClicked ? filledLikeIcon : likeIcon}
-        label={like}
+        label={shortenNumber(like)}
         alt="like"
         onClick={handleLikeClick}></IconLabelButton>
       <IconLabelButton
         src={isUnlikeClicked ? filledUnlikeIcon : unlikeIcon}
-        label={unlike}
+        label={shortenNumber(unlike)}
         alt="unlike"
         onClick={handleUnlikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
@@ -53,6 +54,7 @@ const StyledIconLabelButton = styled.button`
   border: 0;
   font-family: Roboto;
   font-size: 1.1rem;
+  width: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +66,9 @@ const ImageHolder = styled.span`
   height: 2.6rem;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  filter: ${({ theme }) => (theme.currentMode === 'dark' ? 'brightness(1) invert(1)' : 'brightness(0) invert(0)')};
+`;
 
 const Label = styled.span`
   color: ${({ theme }) => colors[theme.currentMode].iconText};
