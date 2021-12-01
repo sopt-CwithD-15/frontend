@@ -1,17 +1,19 @@
-import { client } from 'Cores/api';
 import { useState, useEffect } from 'react';
+import { test } from 'Cores/api';
 
-function useVideoList() {
+function useAPI(apiInfo) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [data, setData] = useState(null);
+  const [shouldUpdate, setShouldUpdate] = useState(0);
+  const mutate = () => setShouldUpdate((prev) => prev + 1);
 
   useEffect(() => {
-    async function getVideoList() {
+    async function execAPICall() {
       try {
         setLoading(true);
-        const result = await client.get('/video');
-        setData(result.data);
+        const result = await test.request(apiInfo);
+        setData(result.data.data);
       } catch (error) {
         setError({
           message: error,
@@ -21,10 +23,10 @@ function useVideoList() {
         setLoading(false);
       }
     }
-    getVideoList();
-  }, []);
+    execAPICall();
+  }, [shouldUpdate]);
 
-  return { data, loading, error };
+  return { data, loading, error, mutate };
 }
 
-export default useVideoList;
+export default useAPI;

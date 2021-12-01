@@ -1,10 +1,10 @@
-import { client } from 'Cores/api';
+import { test } from 'Cores/api';
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 const VID = 'vid';
 
-function useVideoInfo() {
+function useTestVideoInfo() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const initialVid = searchParams.get(VID);
@@ -22,8 +22,8 @@ function useVideoInfo() {
     async function getVideoList() {
       try {
         setLoading(true);
-        const { data } = await client.get(`/video/${currentVid}`);
-        setData(data);
+        const { data } = await test.get(`/video/${currentVid}`);
+        setData(data.data);
       } catch (error) {
         setError({
           message: error,
@@ -39,4 +39,4 @@ function useVideoInfo() {
   return { data, loading, error, vid: currentVid };
 }
 
-export default useVideoInfo;
+export default useTestVideoInfo;
