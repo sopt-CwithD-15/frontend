@@ -53,7 +53,7 @@ function VideoPage() {
           </InfoContainer>
           <VideoIcons
             like={videoInfo.video.likeCount}
-            unlike={videoInfo.video.dislikeCount}
+            dislike={videoInfo.video.dislikeCount}
             isLike={videoInfo.video.isLike}
             isDisLike={videoInfo.video.isDisLike}
           />
