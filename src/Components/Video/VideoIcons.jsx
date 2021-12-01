@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import likeIcon from 'Assets/icon/Videoicon/like.svg';
-import unlikeIcon from 'Assets/icon/Videoicon/unlike.svg';
+import dislikeIcon from 'Assets/icon/Videoicon/unlike.svg';
 import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
-import filledUnlikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
+import filledDislikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
 import shareIcon from 'Assets/icon/Videoicon/arrow.svg';
 import saveIcon from 'Assets/icon/Videoicon/list1.svg';
 import reportIcon from 'Assets/icon/Videoicon/flag.svg';
@@ -11,26 +11,39 @@ import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
 
 function VideoIcons(props) {
-  const [isLikeClicked, setLikeClicked] = useState(false);
-  const [isUnlikeClicked, setUnlikeClicked] = useState(false);
+  const { like, dislike, isLike, isDislike } = props;
 
-  const handleLikeClick = () => setLikeClicked(!isLikeClicked);
-  const handleUnlikeClick = () => setUnlikeClicked(!isUnlikeClicked);
+  const [isLikeClicked, setLikeClicked] = useState(isLike);
+  const [isDislikeClicked, setDislikeClicked] = useState(isDislike);
+  const [likeCount, setLikeCount] = useState(like);
+  const [dislikeCount, setDislikeCount] = useState(dislike);
 
-  const { like, unlike } = props;
+  const handleLikeClick = () => {
+    setLikeClicked(!isLikeClicked);
+    setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount + 1));
+    setDislikeClicked((isDislikeClicked) => (isDislikeClicked ? !isDislikeClicked : isDislikeClicked));
+    setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount));
+  };
+
+  const handleDislikeClick = () => {
+    setDislikeClicked(!isDislikeClicked);
+    setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount + 1));
+    setLikeClicked((isLikeClicked) => (isLikeClicked ? !isLikeClicked : isLikeClicked));
+    setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount));
+  };
 
   return (
     <StyledVideoIcons>
       <IconLabelButton
         src={isLikeClicked ? filledLikeIcon : likeIcon}
-        label={shortenNumber(like)}
+        label={shortenNumber(likeCount)}
         alt="like"
         onClick={handleLikeClick}></IconLabelButton>
       <IconLabelButton
-        src={isUnlikeClicked ? filledUnlikeIcon : unlikeIcon}
-        label={shortenNumber(unlike)}
-        alt="unlike"
-        onClick={handleUnlikeClick}></IconLabelButton>
+        src={isDislikeClicked ? filledDislikeIcon : dislikeIcon}
+        label={shortenNumber(dislikeCount)}
+        alt="dislike"
+        onClick={handleDislikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
       <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
       <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>
