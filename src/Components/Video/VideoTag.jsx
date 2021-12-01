@@ -1,3 +1,4 @@
+import { applyMediaQuery } from 'Style/mediaQuery';
 import styled from 'styled-components';
 
 function VideoTag(props) {
@@ -17,7 +18,10 @@ function VideoTag(props) {
 const StyledVideoTag = styled.ul`
   display: flex;
   gap: 0.5rem;
-  padding: 0 0.5rem;
+
+  ${applyMediaQuery('mobile')} {
+    padding: 0 0.5rem;
+  }
 `;
 
 const Tag = styled.li`

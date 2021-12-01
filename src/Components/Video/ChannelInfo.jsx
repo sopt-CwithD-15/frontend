@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import colors from 'Constants/colors';
+import noticeIcon from 'Assets/icon/bell.svg';
 import { shortenNumber } from 'Utils/shortenNumber';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function ChannelInfo(props) {
   const { profile, author, subscribeCount } = props;
+
+  const [isSubscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = () => setSubscribed(!isSubscribed);
+
+  const subscribe = isSubscribed ? '구독중' : '구독';
+
   return (
     <StyledChannelInfo>
       <ChannelProfile>
@@ -13,7 +23,12 @@ function ChannelInfo(props) {
         <ChannelName>{author}</ChannelName>
         <ChannelSubscribeCount>{shortenNumber(subscribeCount)}</ChannelSubscribeCount>
       </ChannelInfoWrapper>
-      <SubscribeButton>구독</SubscribeButton>
+      <SubscribeWrapper>
+        <NoticeIcon src={noticeIcon} subscribe={subscribe}></NoticeIcon>
+        <SubscribeButton onClick={handleSubscribe} subscribe={subscribe}>
+          {subscribe}
+        </SubscribeButton>
+      </SubscribeWrapper>
     </StyledChannelInfo>
   );
 }
@@ -64,12 +79,37 @@ const ChannelSubscribeCount = styled.div`
   letter-spacing: -0.03rem;
 `;
 
+const SubscribeWrapper = styled.div`
+  margin-left: auto;
+  display: flex;
+  justify-content: right;
+`;
+
+const NoticeIcon = styled.img`
+  width: ${(props) => (props.subscribe === '구독중' ? '1.3rem;' : '0rem;')};
+  overflow: hidden;
+  margin-right: 1rem;
+`;
+
 const SubscribeButton = styled.button`
   border: 0;
-  background-color: transparent;
-  color: ${({ theme }) => colors[theme.currentMode].mainColor};
   margin-left: auto;
-  font-size: 1.1rem;
+
+  ${applyMediaQuery('mobile')} {
+    font-size: 1rem;
+    background-color: ${(props) =>
+      props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
+    height: 2rem;
+    width: ${(props) => (props.subscribe === '구독중' ? '4.9rem;' : '3.7rem;')};
+    text-align: center;
+    border-radius: 0.5rem;
+  }
+  color: ${({ theme }) => colors[theme.currentMode].navBarBg};
+  background-color: ${(props) =>
+    props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
+  height: 5.1rem;
+  width: ${(props) => (props.subscribe === '구독중' ? '10.9rem;' : '9.3rem;')};
+  border-radius: 0.5rem;
 `;
 
 export default ChannelInfo;
