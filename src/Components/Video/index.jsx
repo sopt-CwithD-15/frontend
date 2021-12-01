@@ -6,6 +6,7 @@ import VideoProgressBar from './VideoProgressBar';
 import VideoTitle from './VideoTitle';
 import VideoTag from './VideoTag';
 import VideoRuntime from './VideoRuntime';
+import VideoHot from './VideoHot';
 import Responsive from 'Components/Responsive';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
@@ -15,7 +16,7 @@ import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
 
 function Video({ videoInfo }) {
-  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail } = videoInfo;
+  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail, isHot } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
   const [isVideoPage, setIsVideoPage] = useState(false);
@@ -59,14 +60,22 @@ function Video({ videoInfo }) {
         </Wrapper>
 
         <Responsive mobile>
-          <VideoTitle title={title} />
-          <VideoInfo viewCount={viewCount} uploadDate={createAt} />
+          <VideoTitleMenuWrapper>
+            <VideoInfoWrapper>
+              <VideoTitle title={title} />
+              <VideoInfo viewCount={viewCount} uploadDate={createAt} />
+            </VideoInfoWrapper>
+            <PlayListWrapper>
+              {isHot ? <VideoHot width="2.8rem" height="1.5rem" fontSize="0.9rem" /> : <></>}
+              <DotMenu />
+            </PlayListWrapper>
+          </VideoTitleMenuWrapper>
         </Responsive>
 
         <Responsive tablet desktop>
           <VideoInfoWrapper>
             <VideoTitle title={title} />
-            <VideoInfo viewCount={viewCount} uploadDate={createAt} />
+            <VideoInfo viewCount={viewCount} uploadDate={createAt} isHot={isHot} />
             <UserInfoWrapper>
               {hideOnVideoPage(
                 <UserThumbnail>
@@ -187,6 +196,11 @@ const FlexWrapper = styled.div`
   gap: 1rem;
 `;
 
+const VideoTitleMenuWrapper = styled.div`
+  display: flex;
+  padding-right: 1.2rem;
+`;
+
 const VideoInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -210,6 +224,9 @@ const PlayListWrapper = styled.div`
       css`
         fill: white;
       `}
+  }
+  ${applyMediaQuery('mobile')} {
+    margin-top: 1.3rem;
   }
 `;
 

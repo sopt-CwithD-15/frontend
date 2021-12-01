@@ -11,6 +11,9 @@ const StyledVideoTitle = styled.h2`
   font-size: 1.4rem;
   line-height: 1.6rem;
   letter-spacing: -0.05rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 3.2rem;
 
   ${applyMediaQuery('mobile')} {
     padding: 0 0.5rem;
