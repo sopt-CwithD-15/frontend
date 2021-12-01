@@ -15,7 +15,7 @@ import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
 
 function Video({ videoInfo }) {
-  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail, isHot } = videoInfo;
+  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
   const [isVideoPage, setIsVideoPage] = useState(false);
