@@ -5,7 +5,7 @@ import like from 'Assets/icon/like_no_margin.svg';
 import unlike from 'Assets/icon/unlike_no_margin.svg';
 import blueDown from 'Assets/icon/blue-down.svg';
 import close from 'Assets/icon/close.svg';
-import { test } from 'Cores/api';
+import { client } from 'Cores/api';
 import { applyMediaQuery } from 'Style/mediaQuery';
 import { shortenDate } from 'Utils/shortenDate';
 
@@ -15,7 +15,7 @@ function Comment({ data }) {
 
   const handleClickRemoveBtn = async () => {
     try {
-      await test.delete(`/video/comment/${commentId}`);
+      await client.delete(`/video/comment/${commentId}`);
       window.location.reload();
     } catch (error) {
       throw Error('Failed to remove comment');

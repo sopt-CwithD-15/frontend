@@ -13,7 +13,7 @@ function useAPI(apiInfo) {
       try {
         setLoading(true);
         const result = await client.request(apiInfo);
-        setData(result.data);
+        setData(result.data.data);
       } catch (error) {
         setError({
           message: error,
