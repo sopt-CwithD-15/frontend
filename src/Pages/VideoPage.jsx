@@ -10,14 +10,14 @@ import VideoIcons from 'Components/Video/VideoIcons';
 import CommentHandler from 'Components/Comment/CommentHandler';
 import ChannelInfo from 'Components/Video/ChannelInfo';
 import colors from 'Constants/colors';
-import useTestVideoInfo from 'Cores/Hooks/useTestVideoInfo';
+import useVideoInfo from 'Cores/Hooks/useVideoInfo';
 import { applyMediaQuery } from 'Style/mediaQuery';
 import { shortenDate } from 'Utils/shortenDate';
 
 function VideoPage() {
   const navigator = useNavigate();
   const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
-  const { data: videoInfo, loading: videoInfoLoading, error, vid } = useTestVideoInfo();
+  const { data: videoInfo, loading: videoInfoLoading, error, vid } = useVideoInfo();
   const toggle = () => setIsMobileCommentOpen(!isMobileCommentOpen);
 
   const getVideoTemplate = useCallback(
@@ -66,7 +66,12 @@ function VideoPage() {
         </>
       )}
       {!videoInfoLoading && videoInfo && (
-        <CommentHandler isMobileCommentOpen={isMobileCommentOpen} toggle={toggle} comments={videoInfo.comments} />
+        <CommentHandler
+          isMobileCommentOpen={isMobileCommentOpen}
+          toggle={toggle}
+          comments={videoInfo.comments}
+          vid={videoInfo.video.videoId}
+        />
       )}
       {videoInfo && !videoInfoLoading && !isMobileCommentOpen && <VideoContainer videoList={videoInfo.recommended} />}
     </Container>
