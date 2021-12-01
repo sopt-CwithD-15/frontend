@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Responsive from 'Components/Responsive';
 import Comment from 'Components/Comment';
+import { test } from 'Cores/api';
 import colors from 'Constants/colors';
 import reply from 'Assets/icon/reply.svg';
 import filter from 'Assets/icon/filter.svg';
@@ -9,11 +10,26 @@ import close from 'Assets/icon/close.svg';
 import meWhite from 'Assets/icon/me-thumbnail-white.svg';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
-function CommentList({ comments, toggle }) {
+function CommentList({ comments, toggle, vid }) {
   const [commentValue, setCommentValue] = useState('');
   const [currentComments, setCurrentComments] = useState(comments);
   const showComment = () =>
-    currentComments.map((comment) => <Comment data={comment} key={comment.commentID} />).reverse();
+    currentComments.map((comment) => <Comment data={comment} key={comment.commentId} />).reverse();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await test.post(`/video/comment/${vid}`, {
+        content: commentValue,
+        userId: 1,
+      });
+      setCurrentComments((prevComments) => [...prevComments, result.data.data]);
+    } catch (error) {
+      throw Error('Failed to post comment');
+    }
+
+    setCommentValue('');
+  };
 
   return (
     <>
@@ -50,22 +66,7 @@ function CommentList({ comments, toggle }) {
             댓글을 사용할 때는 타인을 존중하고 <span>커뮤니티 가이드</span> 를 준수해야 합니다.
           </CommentWarnText>
         </Responsive>
-        <InputWrapper
-          onSubmit={(e) => {
-            e.preventDefault();
-            setCurrentComments((prevComments) => [
-              ...prevComments,
-              {
-                commentID: prevComments[prevComments.length - 1].commentID + 1,
-                content: commentValue,
-                commenter: {
-                  nickname: 'JINNY.25',
-                },
-                createdAt: '2021. 11. 21',
-              },
-            ]);
-            setCommentValue('');
-          }}>
+        <InputWrapper onSubmit={handleSubmit}>
           <img src={meWhite} alt="my-thumbnail" />
           <CommentInput
             placeholder="공개 댓글 추가..."

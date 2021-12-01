@@ -4,7 +4,8 @@ import CommentList from './CommentList';
 import profile from 'Assets/icon/profileImage.svg';
 
 function CommentHandler(props) {
-  const { isMobileCommentOpen, toggle, comments } = props;
+  const { isMobileCommentOpen, toggle, comments, vid } = props;
+
   return (
     <>
       <Responsive mobile>
@@ -18,12 +19,12 @@ function CommentHandler(props) {
             }}
           />
         ) : (
-          <CommentList toggle={toggle} comments={comments} />
+          <CommentList toggle={toggle} comments={comments} vid={vid} />
         )}
       </Responsive>
 
       <Responsive tablet desktop>
-        <CommentList toggle={toggle} comments={comments} />
+        <CommentList toggle={toggle} comments={comments} vid={vid} />
       </Responsive>
     </>
   );

@@ -221,6 +221,7 @@ const VideoDescription = styled.p`
   line-height: 1.4rem;
   letter-spacing: -0.03rem;
   max-height: 11.2rem;
+  white-space: break-spaces;
   overflow-y: hidden;
   text-overflow: ellipsis;
 `;
