@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import likeIcon from 'Assets/icon/Videoicon/like.svg';
-import unlikeIcon from 'Assets/icon/Videoicon/unlike.svg';
+import dislikeIcon from 'Assets/icon/Videoicon/unlike.svg';
 import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
-import filledUnlikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
+import filledDislikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
 import shareIcon from 'Assets/icon/Videoicon/arrow.svg';
 import saveIcon from 'Assets/icon/Videoicon/list1.svg';
 import reportIcon from 'Assets/icon/Videoicon/flag.svg';
@@ -11,13 +11,12 @@ import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
 
 function VideoIcons(props) {
+  const { like, dislike } = props;
   const [isLikeClicked, setLikeClicked] = useState(false);
-  const [isUnlikeClicked, setUnlikeClicked] = useState(false);
+  const [isDislikeClicked, setDislikeClicked] = useState(false);
 
   const handleLikeClick = () => setLikeClicked(!isLikeClicked);
-  const handleUnlikeClick = () => setUnlikeClicked(!isUnlikeClicked);
-
-  const { like, unlike } = props;
+  const handleDislikeClick = () => setDislikeClicked(!isDislikeClicked);
 
   return (
     <StyledVideoIcons>
@@ -27,10 +26,10 @@ function VideoIcons(props) {
         alt="like"
         onClick={handleLikeClick}></IconLabelButton>
       <IconLabelButton
-        src={isUnlikeClicked ? filledUnlikeIcon : unlikeIcon}
-        label={shortenNumber(unlike)}
-        alt="unlike"
-        onClick={handleUnlikeClick}></IconLabelButton>
+        src={isDislikeClicked ? filledDislikeIcon : dislikeIcon}
+        label={shortenNumber(dislike)}
+        alt="dislike"
+        onClick={handleDislikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
       <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
       <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>

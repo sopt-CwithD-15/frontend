@@ -13,9 +13,10 @@ import colors from 'Constants/colors';
 import { ReactComponent as AddList } from 'Assets/icon/addList.svg';
 import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
+import { shortenDate } from 'Utils/shortenDate';
 
 function Video({ videoInfo }) {
-  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail } = videoInfo;
+  const { videoId, title, viewCount, createdAt, author, description, runtime, thumbnail } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
   const [isVideoPage, setIsVideoPage] = useState(false);
@@ -60,13 +61,13 @@ function Video({ videoInfo }) {
 
         <Responsive mobile>
           <VideoTitle title={title} />
-          <VideoInfo viewCount={viewCount} uploadDate={createAt} />
+          <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} />
         </Responsive>
 
         <Responsive tablet desktop>
           <VideoInfoWrapper>
             <VideoTitle title={title} />
-            <VideoInfo viewCount={viewCount} uploadDate={createAt} />
+            <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} />
             <UserInfoWrapper>
               {hideOnVideoPage(
                 <UserThumbnail>
@@ -219,6 +220,9 @@ const VideoDescription = styled.p`
   font-size: 0.9rem;
   line-height: 1.4rem;
   letter-spacing: -0.03rem;
+  max-height: 11.2rem;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 `;
 
 const UserInfoWrapper = styled.div`
