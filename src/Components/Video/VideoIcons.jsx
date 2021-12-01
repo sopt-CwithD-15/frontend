@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { test } from 'Cores/api';
 import likeIcon from 'Assets/icon/Videoicon/like.svg';
 import dislikeIcon from 'Assets/icon/Videoicon/unlike.svg';
 import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
@@ -11,26 +12,38 @@ import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
 
 function VideoIcons(props) {
-  const { like, dislike, isLike, isDislike } = props;
+  const { like, dislike, isLike, isDislike, vid } = props;
 
   const [isLikeClicked, setLikeClicked] = useState(isLike);
   const [isDislikeClicked, setDislikeClicked] = useState(isDislike);
   const [likeCount, setLikeCount] = useState(like);
   const [dislikeCount, setDislikeCount] = useState(dislike);
 
-  const handleLikeClick = () => {
-    setLikeClicked(!isLikeClicked);
-    setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount + 1));
-    setDislikeClicked((isDislikeClicked) => (isDislikeClicked ? !isDislikeClicked : isDislikeClicked));
-    setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount));
+  const handleLikeClick = async (e) => {
+    e.preventDefault();
+    try {
+      await test.post(`/video/like/${vid}`);
+      setLikeClicked(!isLikeClicked);
+      setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount + 1));
+    } catch (error) {
+      throw Error('Failed to post like');
+    }
   };
 
-  const handleDislikeClick = () => {
-    setDislikeClicked(!isDislikeClicked);
-    setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount + 1));
-    setLikeClicked((isLikeClicked) => (isLikeClicked ? !isLikeClicked : isLikeClicked));
-    setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount));
+  const handleDislikeClick = async (e) => {
+    e.preventDefault();
+    try {
+      await test.post(`/video/dislike/${vid}`);
+      setDislikeClicked(!isDislikeClicked);
+      setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount + 1));
+    } catch (error) {
+      throw Error('Failed to post dislike');
+    }
   };
+
+  useEffect(() => {
+    console.log(isDislike, isLike, isDislikeClicked, isLikeClicked);
+  }, [isDislike, isLike, isLikeClicked, isDislikeClicked]);
 
   return (
     <StyledVideoIcons>
