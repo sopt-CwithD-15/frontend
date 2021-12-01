@@ -76,7 +76,7 @@ function Video({ videoInfo }) {
         <Responsive tablet desktop>
           <VideoInfoWrapper>
             <VideoTitle title={title} />
-            <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} isHot={isHot}/>
+            <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} isHot={isHot} />
             <UserInfoWrapper>
               {hideOnVideoPage(
                 <UserThumbnail>
