@@ -64,7 +64,7 @@ function Video({ videoInfo }) {
           <VideoTitleMenuWrapper>
             <VideoInfoWrapper>
               <VideoTitle title={title} />
-              <VideoInfo viewCount={viewCount} uploadDate={createdAt} />
+              <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} />
             </VideoInfoWrapper>
             <PlayListWrapper>
               {isHot ? <VideoHot width="2.8rem" height="1.5rem" fontSize="0.9rem" /> : <></>}
