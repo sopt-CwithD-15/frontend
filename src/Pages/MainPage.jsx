@@ -31,6 +31,7 @@ function MainPage() {
 
 const Container = styled.main`
   width: 100%;
+  min-height: 100%;
   background-color: ${({ theme }) => (theme.currentMode === 'dark' ? 'black' : '#F9F9F9')};
 
   ${applyMediaQuery('mobile')} {

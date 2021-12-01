@@ -77,6 +77,7 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 100%;
   position: relative;
   background-color: ${({ theme }) => colors[theme.currentMode].mainVideoListBg};
 

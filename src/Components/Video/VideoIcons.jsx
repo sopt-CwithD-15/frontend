@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import likeIcon from 'Assets/icon/like.svg';
 import unlikeIcon from 'Assets/icon/unlike.svg';
+import filledLikeIcon from 'Assets/icon/like(fill).svg';
+import filledUnlikeIcon from 'Assets/icon/unlike(fill).svg';
 import shareIcon from 'Assets/icon/arrow.svg';
 import saveIcon from 'Assets/icon/list1.svg';
 import reportIcon from 'Assets/icon/flag.svg';
@@ -8,11 +11,26 @@ import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
 
 function VideoIcons(props) {
+  const [isLikeClicked, setLikeClicked] = useState(false);
+  const [isUnlikeClicked, setUnlikeClicked] = useState(false);
+
+  const handleLikeClick = () => setLikeClicked(!isLikeClicked);
+  const handleUnlikeClick = () => setUnlikeClicked(!isUnlikeClicked);
+
   const { like, unlike } = props;
+
   return (
     <StyledVideoIcons>
-      <IconLabelButton src={likeIcon} label={shortenNumber(like)} alt="like"></IconLabelButton>
-      <IconLabelButton src={unlikeIcon} label={shortenNumber(unlike)} alt="unlike"></IconLabelButton>
+      <IconLabelButton
+        src={isLikeClicked ? filledLikeIcon : likeIcon}
+        label={shortenNumber(like)}
+        alt="like"
+        onClick={handleLikeClick}></IconLabelButton>
+      <IconLabelButton
+        src={isUnlikeClicked ? filledUnlikeIcon : unlikeIcon}
+        label={shortenNumber(unlike)}
+        alt="unlike"
+        onClick={handleUnlikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
       <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
       <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>
@@ -20,9 +38,9 @@ function VideoIcons(props) {
   );
 }
 
-function IconLabelButton({ src, label, alt }) {
+function IconLabelButton({ src, label, alt, onClick }) {
   return (
-    <StyledIconLabelButton>
+    <StyledIconLabelButton onClick={onClick}>
       <ImageHolder>
         <Image src={src} alt={alt} />
       </ImageHolder>
@@ -36,6 +54,7 @@ const StyledIconLabelButton = styled.button`
   border: 0;
   font-family: Roboto;
   font-size: 1.1rem;
+  width: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
