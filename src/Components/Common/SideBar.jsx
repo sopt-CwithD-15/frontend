@@ -30,6 +30,12 @@ const SideBar = () => {
         </MobileSideBar>
       </Responsive>
 
+      <Responsive tablet>
+        <StyledSidebar>
+          <SidebarTabList>{showSideBarTab([...mobileList, ...storageList])}</SidebarTabList>
+        </StyledSidebar>
+      </Responsive>
+
       <Responsive desktop>
         <StyledSidebar>
           <SidebarTabList>{showSideBarTab(mobileList)}</SidebarTabList>
@@ -64,6 +70,7 @@ const StyledSidebar = styled.aside`
 
   ${applyMediaQuery('tablet')} {
     width: 6rem;
+    height: calc(100vh - 4.5rem);
   }
 
   ${applyMediaQuery('desktop')} {
@@ -89,11 +96,16 @@ const SidebarTabList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
   gap: 1rem;
-
   border-bottom: 0.02rem solid #e5e5e5;
-
   padding: 1rem;
+
+  ${applyMediaQuery('tablet')} {
+    align-items: center;
+    gap: 3rem;
+    border-bottom: none;
+  }
 `;
 
 const MobileSideBar = styled.div`

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from 'Constants/colors';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function SideBarTab(props) {
   const { label, icon: Icon } = props;
@@ -15,6 +16,11 @@ const StyledTab = styled.li`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  ${applyMediaQuery('tablet')} {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
   & > svg {
     width: 1.5rem;
