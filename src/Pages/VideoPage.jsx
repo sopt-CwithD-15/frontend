@@ -55,7 +55,8 @@ function VideoPage() {
             like={videoInfo.video.likeCount}
             dislike={videoInfo.video.dislikeCount}
             isLike={videoInfo.video.isLike}
-            isDisLike={videoInfo.video.isDisLike}
+            isDislike={videoInfo.video.isDislike}
+            vid={videoInfo.video.videoId}
           />
           <ChannelInfo
             profile={videoInfo.video.author.profileImage}
