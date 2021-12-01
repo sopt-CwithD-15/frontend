@@ -11,23 +11,37 @@ import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
 
 function VideoIcons(props) {
-  const { like, dislike } = props;
-  const [isLikeClicked, setLikeClicked] = useState(false);
-  const [isDislikeClicked, setDislikeClicked] = useState(false);
+  const { like, dislike, isLike, isDislike } = props;
 
-  const handleLikeClick = () => setLikeClicked(!isLikeClicked);
-  const handleDislikeClick = () => setDislikeClicked(!isDislikeClicked);
+  const [isLikeClicked, setLikeClicked] = useState(isLike);
+  const [isDislikeClicked, setDislikeClicked] = useState(isDislike);
+  const [likeCount, setLikeCount] = useState(like);
+  const [dislikeCount, setDislikeCount] = useState(dislike);
+
+  const handleLikeClick = () => {
+    setLikeClicked(!isLikeClicked);
+    setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount + 1));
+    setDislikeClicked((isDislikeClicked) => (isDislikeClicked ? !isDislikeClicked : isDislikeClicked));
+    setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount));
+  };
+
+  const handleDislikeClick = () => {
+    setDislikeClicked(!isDislikeClicked);
+    setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount + 1));
+    setLikeClicked((isLikeClicked) => (isLikeClicked ? !isLikeClicked : isLikeClicked));
+    setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount));
+  };
 
   return (
     <StyledVideoIcons>
       <IconLabelButton
         src={isLikeClicked ? filledLikeIcon : likeIcon}
-        label={shortenNumber(like)}
+        label={shortenNumber(likeCount)}
         alt="like"
         onClick={handleLikeClick}></IconLabelButton>
       <IconLabelButton
         src={isDislikeClicked ? filledDislikeIcon : dislikeIcon}
-        label={shortenNumber(dislike)}
+        label={shortenNumber(dislikeCount)}
         alt="dislike"
         onClick={handleDislikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
