@@ -5,15 +5,10 @@ import FilterBar from 'Components/Common/FilterBar';
 import SideBar from 'Components/Common/SideBar';
 import Responsive from 'Components/Responsive';
 import colors from 'Constants/colors';
-// import useAPI from 'Cores/Hooks/useAPI';
 import useTest from 'Cores/Hooks/useTest';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
 function MainPage() {
-  // const { loading, data } = useAPI({
-  //   method: 'GET',
-  //   url: '/video',
-  // });
   const { loading, data } = useTest({
     method: 'GET',
     url: '/video',

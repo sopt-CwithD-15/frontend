@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from 'Constants/colors';
 import noticeIcon from 'Assets/icon/bell.svg';
 import { shortenNumber } from 'Utils/shortenNumber';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function ChannelInfo(props) {
   const { profile, author, subscribeCount } = props;
@@ -93,23 +94,22 @@ const NoticeIcon = styled.img`
 const SubscribeButton = styled.button`
   border: 0;
   margin-left: auto;
-  /* 모바일 */
-  font-size: 1rem;
+
+  ${applyMediaQuery('mobile')} {
+    font-size: 1rem;
+    background-color: ${(props) =>
+      props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
+    height: 2rem;
+    width: ${(props) => (props.subscribe === '구독중' ? '4.9rem;' : '3.7rem;')};
+    text-align: center;
+    border-radius: 0.5rem;
+  }
+  color: ${({ theme }) => colors[theme.currentMode].navBarBg};
   background-color: ${(props) =>
     props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
-  color: ${({ theme }) => colors[theme.currentMode].navBarBg};
-  height: 2rem;
-  width: ${(props) => (props.subscribe === '구독중' ? '4.9rem;' : '3.7rem;')};
-  text-align: center;
-  border-radius: 0.5rem;
-  /* 태블릿 & PC */
-  /* font-size: 1.8rem;
-  background-color: ${(props) =>
-    props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
-  color: ${({ theme }) => colors[theme.currentMode].navBarBg};
   height: 5.1rem;
   width: ${(props) => (props.subscribe === '구독중' ? '10.9rem;' : '9.3rem;')};
-  border-radius: 0.5rem; */
+  border-radius: 0.5rem;
 `;
 
 export default ChannelInfo;
