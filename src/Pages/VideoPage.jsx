@@ -65,7 +65,12 @@ function VideoPage() {
         </>
       )}
       {!videoInfoLoading && videoInfo && (
-        <CommentHandler isMobileCommentOpen={isMobileCommentOpen} toggle={toggle} comments={videoInfo.comments} />
+        <CommentHandler
+          isMobileCommentOpen={isMobileCommentOpen}
+          toggle={toggle}
+          comments={videoInfo.comments}
+          vid={videoInfo.video.videoId}
+        />
       )}
       {videoInfo && !videoInfoLoading && !isMobileCommentOpen && <VideoContainer videoList={videoInfo.recommended} />}
     </Container>

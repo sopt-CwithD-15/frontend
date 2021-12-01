@@ -1,25 +1,39 @@
 import colors from 'Constants/colors';
 import styled from 'styled-components';
-
-import profile from 'Assets/icon/profileImage.svg';
 import reReply from 'Assets/icon/re-reply.svg';
 import like from 'Assets/icon/like_no_margin.svg';
 import unlike from 'Assets/icon/unlike_no_margin.svg';
 import blueDown from 'Assets/icon/blue-down.svg';
+import close from 'Assets/icon/close.svg';
+import { test } from 'Cores/api';
 import { applyMediaQuery } from 'Style/mediaQuery';
+import { shortenDate } from 'Utils/shortenDate';
 
 function Comment({ data }) {
-  const { commenter, createdAt, content } = data;
-  const { nickname } = commenter;
+  const { commenter, createdAt, content, commentId } = data;
+  const { nickname, profileImage } = commenter;
+
+  const handleClickRemoveBtn = async () => {
+    try {
+      await test.delete(`/video/comment/${commentId}`);
+      window.location.reload();
+    } catch (error) {
+      throw Error('Failed to remove comment');
+    }
+  };
+
   return (
     <StyledComment>
       <UserThumbnail>
-        <img src={profile} alt="user-thumbnail" />
+        <img src={profileImage} alt="user-thumbnail" />
       </UserThumbnail>
       <CommentContainer>
         <CommentHeader>
           <CommentAuthor>{nickname}</CommentAuthor>
-          <CommentDate>{createdAt}</CommentDate>
+          <CommentDate>{shortenDate(createdAt)}</CommentDate>
+          <RemoveBtn onClick={handleClickRemoveBtn}>
+            <img src={close} alt="close" />
+          </RemoveBtn>
         </CommentHeader>
         <CommentBody>{content}</CommentBody>
         <CommentFooter>
@@ -28,11 +42,11 @@ function Comment({ data }) {
             <span>1.2만</span>
           </IconWrapper>
           <IconWrapper>
-            <img src={unlike} alt={unlike} />
+            <img src={unlike} alt="unlike" />
             <span>53</span>
           </IconWrapper>
           <IconWrapper>
-            <img src={reReply} alt={reReply} id="except" />
+            <img src={reReply} alt="reReply" id="except" />
             <BlueText>
               답글 2개 <img src={blueDown} alt="blueDown" />
             </BlueText>
@@ -77,17 +91,14 @@ const CommentHeader = styled.div`
 `;
 
 const CommentAuthor = styled.h2`
-  line-height: 1.4rem;
   font-size: 1.2rem;
   font-weight: bolder;
 `;
 
 const CommentDate = styled.span`
-  line-height: 1.4rem;
   font-size: 1.1rem;
   letter-spacing: -0.025rem;
   color: ${colors.light.copyRightText};
-  margin: auto 0;
 `;
 
 const CommentBody = styled.p`
@@ -125,6 +136,21 @@ const BlueText = styled.span`
   display: flex;
   align-items: center;
   gap: 0.3rem;
+`;
+
+const RemoveBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0;
+
+  width: 0.5rem;
+  height: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  & > img {
+    max-width: 100%;
+  }
 `;
 
 export default Comment;
