@@ -2,10 +2,10 @@ import colors from 'Constants/colors';
 import styled from 'styled-components';
 
 function VideoProgressBar({ progress }) {
-  return <StyledProgessBar progress={progress} />;
+  return <StyledProgressBar progress={progress} />;
 }
 
-const StyledProgessBar = styled.div`
+const StyledProgressBar = styled.div`
   position: absolute;
   top: 0;
   width: ${(props) => props.progress || '100'}%;
