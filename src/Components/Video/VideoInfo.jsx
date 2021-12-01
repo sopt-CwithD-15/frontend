@@ -2,8 +2,10 @@ import styled, { css } from 'styled-components';
 import newIcon from 'Assets/icon/new.svg';
 import colors from 'Constants/colors';
 import { applyMediaQuery } from 'Style/mediaQuery';
+import VideoHot from './VideoHot';
+import Responsive from 'Components/Responsive';
 
-function VideoInfo({ viewCount, uploadDate }) {
+function VideoInfo({ viewCount, uploadDate, isHot }) {
   return (
     <StyledVideoInfo>
       <span>{`조회수 ${viewCount.toLocaleString()}회`}</span>
@@ -11,6 +13,9 @@ function VideoInfo({ viewCount, uploadDate }) {
       <div>
         <img src={newIcon} alt="new" />
       </div>
+      <Responsive tablet desktop>
+        {isHot ? <VideoHot width="2.8rem" height="1.5rem" fontSize="0.9rem" /> : <></>}
+      </Responsive>
     </StyledVideoInfo>
   );
 }

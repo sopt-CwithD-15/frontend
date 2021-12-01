@@ -6,6 +6,7 @@ import VideoProgressBar from './VideoProgressBar';
 import VideoTitle from './VideoTitle';
 import VideoTag from './VideoTag';
 import VideoRuntime from './VideoRuntime';
+import VideoHot from './VideoHot';
 import Responsive from 'Components/Responsive';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
@@ -13,13 +14,14 @@ import colors from 'Constants/colors';
 import { ReactComponent as AddList } from 'Assets/icon/addList.svg';
 import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
+import { shortenDate } from 'Utils/shortenDate';
 
 function Video({ videoInfo }) {
-  const { id, thumbnail, tags, viewCount, uploadDate, runtime, title, author, desc } = videoInfo;
+  const { videoId, title, viewCount, createdAt, author, description, runtime, thumbnail, isHot } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
   const [isVideoPage, setIsVideoPage] = useState(false);
-
+  const tags = ['제로초', '리액트', 'React'];
   const hideOnVideoPage = (element) => !isVideoPage && element;
 
   useEffect(() => {
@@ -36,20 +38,20 @@ function Video({ videoInfo }) {
           navigator({
             pathname: '/video',
             search: `?${createSearchParams({
-              vid: id,
+              vid: videoId,
             })}`,
           })
         }>
         <Wrapper>
           <VideoThumbnail>
-            <img src={thumbnail.video} alt="video-thumbnail" />
+            <img src={thumbnail} alt="video-thumbnail" />
             <VideoProgressBar />
           </VideoThumbnail>
           <ToolWrapper>
             <Responsive mobile>
               <FlexWrapper>
                 <UserThumbnail>
-                  <img src={thumbnail.user} alt="user-thumbnail" />
+                  <img src={author.profileImage} alt="user-thumbnail" />
                 </UserThumbnail>
                 <VideoTag tagList={tags} />
               </FlexWrapper>
@@ -59,23 +61,31 @@ function Video({ videoInfo }) {
         </Wrapper>
 
         <Responsive mobile>
-          <VideoTitle title={title} />
-          <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+          <VideoTitleMenuWrapper>
+            <VideoInfoWrapper>
+              <VideoTitle title={title} />
+              <VideoInfo viewCount={viewCount} uploadDate={createdAt} />
+            </VideoInfoWrapper>
+            <PlayListWrapper>
+              {isHot ? <VideoHot width="2.8rem" height="1.5rem" fontSize="0.9rem" /> : <></>}
+              <DotMenu />
+            </PlayListWrapper>
+          </VideoTitleMenuWrapper>
         </Responsive>
 
         <Responsive tablet desktop>
           <VideoInfoWrapper>
             <VideoTitle title={title} />
-            <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+            <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} isHot={isHot} />
             <UserInfoWrapper>
               {hideOnVideoPage(
                 <UserThumbnail>
-                  <img src={thumbnail.user} alt="user-thumbnail" />
+                  <img src={author.profileImage} alt="user-thumbnail" />
                 </UserThumbnail>,
               )}
-              <UserName>{author}</UserName>
+              <UserName>{author.nickname}</UserName>
             </UserInfoWrapper>
-            {hideOnVideoPage(<VideoDescription>{desc}</VideoDescription>)}
+            {hideOnVideoPage(<VideoDescription>{description}</VideoDescription>)}
           </VideoInfoWrapper>
 
           <PlayListWrapper>
@@ -187,6 +197,11 @@ const FlexWrapper = styled.div`
   gap: 1rem;
 `;
 
+const VideoTitleMenuWrapper = styled.div`
+  display: flex;
+  padding-right: 1.2rem;
+`;
+
 const VideoInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -211,6 +226,9 @@ const PlayListWrapper = styled.div`
         fill: white;
       `}
   }
+  ${applyMediaQuery('mobile')} {
+    margin-top: 1.3rem;
+  }
 `;
 
 const VideoDescription = styled.p`
@@ -219,6 +237,9 @@ const VideoDescription = styled.p`
   font-size: 0.9rem;
   line-height: 1.4rem;
   letter-spacing: -0.03rem;
+  max-height: 11.2rem;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 `;
 
 const UserInfoWrapper = styled.div`
