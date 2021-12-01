@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import Video from 'Components/Video';
 
 function VideoContainer({ videoList }) {
-  return <Container>{videoList && videoList.map((video) => <Video videoInfo={video} key={video.id} />)}</Container>;
+  return (
+    <Container>{videoList && videoList.map((video) => <Video videoInfo={video} key={video.videoId} />)}</Container>
+  );
 }
 
 const Container = styled.div`

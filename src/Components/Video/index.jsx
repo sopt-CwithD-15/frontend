@@ -15,11 +15,11 @@ import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
 
 function Video({ videoInfo }) {
-  const { id, thumbnail, tags, viewCount, uploadDate, runtime, title, author, desc } = videoInfo;
+  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail, isHot } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
   const [isVideoPage, setIsVideoPage] = useState(false);
-
+  const tags = ['제로초', '리액트', 'React'];
   const hideOnVideoPage = (element) => !isVideoPage && element;
 
   useEffect(() => {
@@ -36,20 +36,20 @@ function Video({ videoInfo }) {
           navigator({
             pathname: '/video',
             search: `?${createSearchParams({
-              vid: id,
+              vid: videoId,
             })}`,
           })
         }>
         <Wrapper>
           <VideoThumbnail>
-            <img src={thumbnail.video} alt="video-thumbnail" />
+            <img src={thumbnail} alt="video-thumbnail" />
             <VideoProgressBar />
           </VideoThumbnail>
           <ToolWrapper>
             <Responsive mobile>
               <FlexWrapper>
                 <UserThumbnail>
-                  <img src={thumbnail.user} alt="user-thumbnail" />
+                  <img src={author.profileImage} alt="user-thumbnail" />
                 </UserThumbnail>
                 <VideoTag tagList={tags} />
               </FlexWrapper>
@@ -60,22 +60,22 @@ function Video({ videoInfo }) {
 
         <Responsive mobile>
           <VideoTitle title={title} />
-          <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+          <VideoInfo viewCount={viewCount} uploadDate={createAt} />
         </Responsive>
 
         <Responsive tablet desktop>
           <VideoInfoWrapper>
             <VideoTitle title={title} />
-            <VideoInfo viewCount={viewCount} uploadDate={uploadDate} />
+            <VideoInfo viewCount={viewCount} uploadDate={createAt} />
             <UserInfoWrapper>
               {hideOnVideoPage(
                 <UserThumbnail>
-                  <img src={thumbnail.user} alt="user-thumbnail" />
+                  <img src={author.profileImage} alt="user-thumbnail" />
                 </UserThumbnail>,
               )}
-              <UserName>{author}</UserName>
+              <UserName>{author.nickname}</UserName>
             </UserInfoWrapper>
-            {hideOnVideoPage(<VideoDescription>{desc}</VideoDescription>)}
+            {hideOnVideoPage(<VideoDescription>{description}</VideoDescription>)}
           </VideoInfoWrapper>
 
           <PlayListWrapper>
