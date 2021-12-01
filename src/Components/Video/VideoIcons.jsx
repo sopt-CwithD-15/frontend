@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import likeIcon from 'Assets/icon/like.svg';
-import unlikeIcon from 'Assets/icon/unlike.svg';
-import filledLikeIcon from 'Assets/icon/like(fill).svg';
-import filledUnlikeIcon from 'Assets/icon/unlike(fill).svg';
-import shareIcon from 'Assets/icon/arrow.svg';
-import saveIcon from 'Assets/icon/list1.svg';
-import reportIcon from 'Assets/icon/flag.svg';
+import likeIcon from 'Assets/icon/Videoicon/like.svg';
+import unlikeIcon from 'Assets/icon/Videoicon/unlike.svg';
+import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
+import filledUnlikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
+import shareIcon from 'Assets/icon/Videoicon/arrow.svg';
+import saveIcon from 'Assets/icon/Videoicon/list1.svg';
+import reportIcon from 'Assets/icon/Videoicon/flag.svg';
 import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
 
