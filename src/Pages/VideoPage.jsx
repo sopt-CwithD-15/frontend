@@ -10,18 +10,14 @@ import VideoIcons from 'Components/Video/VideoIcons';
 import CommentHandler from 'Components/Comment/CommentHandler';
 import ChannelInfo from 'Components/Video/ChannelInfo';
 import colors from 'Constants/colors';
-import useVideoInfo from 'Cores/Hooks/useVideoInfo';
-import useAPI from 'Cores/Hooks/useAPI';
+import useTestVideoInfo from 'Cores/Hooks/useTestVideoInfo';
 import { applyMediaQuery } from 'Style/mediaQuery';
+import { shortenDate } from 'Utils/shortenDate';
 
 function VideoPage() {
   const navigator = useNavigate();
   const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
-  const { data: videoInfo, loading: videoInfoLoading, error, vid } = useVideoInfo();
-  const { data: videoList, loading: videoListLoading } = useAPI({
-    method: 'GET',
-    url: '/video',
-  });
+  const { data: videoInfo, loading: videoInfoLoading, error, vid } = useTestVideoInfo();
   const toggle = () => setIsMobileCommentOpen(!isMobileCommentOpen);
 
   const getVideoTemplate = useCallback(
@@ -51,24 +47,27 @@ function VideoPage() {
       {videoInfo && !videoInfoLoading && !isMobileCommentOpen && (
         <>
           <InfoContainer>
-            <VideoTag color={colors.light.blue} tagList={videoInfo.tags} />
-            <VideoTitle title={videoInfo.title} />
-            <VideoInfo viewCount={videoInfo.viewCount} uploadDate={videoInfo.uploadDate} />
+            <VideoTag color={colors.light.blue} tagList={videoInfo.video.tags} />
+            <VideoTitle title={videoInfo.video.title} />
+            <VideoInfo viewCount={videoInfo.video.viewCount} uploadDate={shortenDate(videoInfo.video.createdAt)} />
           </InfoContainer>
-          <VideoIcons like={videoInfo.like} unlike={videoInfo.unlike} />
+          <VideoIcons
+            like={videoInfo.video.likeCount}
+            dislike={videoInfo.video.dislikeCount}
+            isLike={videoInfo.video.isLike}
+            isDisLike={videoInfo.video.isDisLike}
+          />
           <ChannelInfo
-            profile={videoInfo.thumbnail.user}
-            author={videoInfo.author}
-            subscribeCount={videoInfo.subscribeCount}
+            profile={videoInfo.video.author.profileImage}
+            author={videoInfo.video.author.nickname}
+            subscribeCount={1234}
           />
         </>
       )}
       {!videoInfoLoading && videoInfo && (
         <CommentHandler isMobileCommentOpen={isMobileCommentOpen} toggle={toggle} comments={videoInfo.comments} />
       )}
-      {videoInfo && videoList && !videoListLoading && !isMobileCommentOpen && (
-        <VideoContainer videoList={videoList.filter((video) => video.id !== videoInfo.id)} />
-      )}
+      {videoInfo && !videoInfoLoading && !isMobileCommentOpen && <VideoContainer videoList={videoInfo.recommended} />}
     </Container>
   );
 }

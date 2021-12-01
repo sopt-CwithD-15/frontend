@@ -14,9 +14,10 @@ import colors from 'Constants/colors';
 import { ReactComponent as AddList } from 'Assets/icon/addList.svg';
 import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
+import { shortenDate } from 'Utils/shortenDate';
 
 function Video({ videoInfo }) {
-  const { videoId, title, viewCount, createAt, author, description, runtime, thumbnail, isHot } = videoInfo;
+  const { videoId, title, viewCount, createdAt, author, description, runtime, thumbnail, isHot } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
   const [isVideoPage, setIsVideoPage] = useState(false);
@@ -63,7 +64,7 @@ function Video({ videoInfo }) {
           <VideoTitleMenuWrapper>
             <VideoInfoWrapper>
               <VideoTitle title={title} />
-              <VideoInfo viewCount={viewCount} uploadDate={createAt} />
+              <VideoInfo viewCount={viewCount} uploadDate={createdAt} />
             </VideoInfoWrapper>
             <PlayListWrapper>
               {isHot ? <VideoHot width="2.8rem" height="1.5rem" fontSize="0.9rem" /> : <></>}
@@ -75,7 +76,7 @@ function Video({ videoInfo }) {
         <Responsive tablet desktop>
           <VideoInfoWrapper>
             <VideoTitle title={title} />
-            <VideoInfo viewCount={viewCount} uploadDate={createAt} isHot={isHot} />
+            <VideoInfo viewCount={viewCount} uploadDate={shortenDate(createdAt)} isHot={isHot}/>
             <UserInfoWrapper>
               {hideOnVideoPage(
                 <UserThumbnail>
@@ -236,6 +237,9 @@ const VideoDescription = styled.p`
   font-size: 0.9rem;
   line-height: 1.4rem;
   letter-spacing: -0.03rem;
+  max-height: 11.2rem;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 `;
 
 const UserInfoWrapper = styled.div`
