@@ -20,7 +20,7 @@ function Video({ videoInfo }) {
   const { videoId, title, viewCount, createdAt, author, description, runtime, thumbnail, isHot } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
-  const { isDesktop, isTablet } = useMedia();
+  const { isDesktop } = useMedia();
   const [isVideoPage, setIsVideoPage] = useState(false);
   const tags = ['제로초', '리액트', 'React'];
   const hideOnVideoPage = (element) => !isVideoPage && element;

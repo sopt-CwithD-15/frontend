@@ -149,16 +149,37 @@ const FoldableVideoList = styled.div`
   ${(props) =>
     props.isOpen
       ? css`
-          width: 30%;
-          height: auto;
           overflow: auto;
+          animation: open 300ms ease-in-out forwards;
         `
       : css`
-          width: 0;
-          height: 0;
           overflow: hidden;
+          animation: fold 300ms ease-in-out forwards;
         `};
+
   background-color: ${({ theme }) => colors[theme.currentMode].rightVideoListBg};
+
+  @keyframes open {
+    from {
+      width: 0;
+      height: 0;
+    }
+
+    to {
+      width: 30%;
+      height: auto;
+    }
+  }
+  @keyframes fold {
+    from {
+      width: 30%;
+    }
+
+    to {
+      width: 0;
+      height: 0;
+    }
+  }
 `;
 
 const FlexWrapper = styled.div`
