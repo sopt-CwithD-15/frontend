@@ -88,6 +88,11 @@ const CommentContainer = styled.div`
   order: 1;
 
   border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  ${applyMediaQuery('desktop')} {
+    order: unset;
+    border-top: none;
+    background-color: transparent;
+  }
   ${applyMediaQuery('mobile')} {
     border: none;
   }

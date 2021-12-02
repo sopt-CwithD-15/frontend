@@ -1,11 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import { deviceQuery } from 'Constants/deviceInfo';
 
-function Responsive(props) {
-  const { children, mobile, tablet, desktop } = props;
-
-  let shouldRender = false;
-
+export function useMedia() {
   const isMobile = useMediaQuery({
     query: deviceQuery.mobile,
   });
@@ -17,6 +13,15 @@ function Responsive(props) {
   const isDesktop = useMediaQuery({
     query: deviceQuery.desktop,
   });
+
+  return { isMobile, isTablet, isDesktop };
+}
+
+function Responsive(props) {
+  const { children, mobile, tablet, desktop } = props;
+  const { isMobile, isTablet, isDesktop } = useMedia();
+
+  let shouldRender = false;
 
   if (mobile) shouldRender = shouldRender || isMobile;
   if (tablet) shouldRender = shouldRender || isTablet;
