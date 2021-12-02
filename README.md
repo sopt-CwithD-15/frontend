@@ -1,6 +1,6 @@
 # WE-SOPT 클라이언트 & 디자인 세미나
 
-## 프로젝트 구성
+## :gear: 프로젝트 구성
 
 1. React
 2. ESLint
@@ -10,7 +10,7 @@
 6. react-responsive
 7. +etc
 
-## 디렉토리 구조
+## 📂 디렉토리 구조
 
 변경될 수 있습니다 ~ !
 
@@ -66,16 +66,16 @@
 ├── index.js
 ``` 
 
-## 컨벤션
+## 🤙 컨벤션
 
 [:fire: 15조 컨벤션 모음 :fire:](https://github.com/sopt-CwithD-15/frontend/issues)
 
-## 브랜치 전략
+## 🌳 브랜치 전략
 
 - 기능 추가 : feat/(기능이름)
 - 버그 수정 : fix/(버그 명세)
 
-## 팀원 정보
+## 👨‍💻 팀원 정보
 <table>
     <tr align="center">
         <td style="min-width: 150px;">
