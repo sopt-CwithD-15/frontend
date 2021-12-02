@@ -7,7 +7,7 @@ import VideoTitle from './VideoTitle';
 import VideoTag from './VideoTag';
 import VideoRuntime from './VideoRuntime';
 import VideoHot from './VideoHot';
-import Responsive from 'Components/Responsive';
+import Responsive, { useMedia } from 'Components/Responsive';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
 import colors from 'Constants/colors';
@@ -20,6 +20,7 @@ function Video({ videoInfo }) {
   const { videoId, title, viewCount, createdAt, author, description, runtime, thumbnail, isHot } = videoInfo;
   const navigator = useNavigate();
   const location = useLocation();
+  const { isDesktop } = useMedia();
   const [isVideoPage, setIsVideoPage] = useState(false);
   const tags = ['제로초', '리액트', 'React'];
   const hideOnVideoPage = (element) => !isVideoPage && element;
@@ -86,13 +87,21 @@ function Video({ videoInfo }) {
               <UserName>{author.nickname}</UserName>
             </UserInfoWrapper>
             {hideOnVideoPage(<VideoDescription>{description}</VideoDescription>)}
+            {isVideoPage && isDesktop && (
+              <PlayListWrapper>
+                <AddList />
+                <PlayList />
+                <DotMenu />
+              </PlayListWrapper>
+            )}
           </VideoInfoWrapper>
-
-          <PlayListWrapper>
-            <AddList />
-            <PlayList />
-            <DotMenu />
-          </PlayListWrapper>
+          {!(isVideoPage && isDesktop) && (
+            <PlayListWrapper>
+              <AddList />
+              <PlayList />
+              <DotMenu />
+            </PlayListWrapper>
+          )}
         </Responsive>
       </StyledVideo>
     </SizeProvider>
@@ -126,6 +135,14 @@ const VideoThumbnail = styled.div`
       theme.small &&
       css`
         padding-top: 7.2rem;
+        border-radius: 0 0 4px 4px;
+      `};
+  }
+  ${applyMediaQuery('desktop')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        padding-top: 10rem;
         border-radius: 0 0 4px 4px;
       `};
   }
