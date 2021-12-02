@@ -138,6 +138,14 @@ const VideoThumbnail = styled.div`
         border-radius: 0 0 4px 4px;
       `};
   }
+  ${applyMediaQuery('desktop')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        padding-top: 10rem;
+        border-radius: 0 0 4px 4px;
+      `};
+  }
 
   overflow: hidden;
 
