@@ -17,6 +17,7 @@ export default {
     channelInfoBorder: '#959595',
     iconText: '#030303',
     mobileCommentListHeader: '#f4f4f4',
+    micBg: '#121212',
   },
   dark: {
     mainColor: '#ED2123',
@@ -36,5 +37,6 @@ export default {
     channelInfoBorder: '#7c7c7c',
     iconText: 'white',
     mobileCommentListHeader: '#212121',
+    micBg: '#F9F9F9',
   },
 };
