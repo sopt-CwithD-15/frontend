@@ -16,6 +16,18 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: #bfbfbf;
+      border-radius: 18px;
+    }
   }
 
   button:hover {

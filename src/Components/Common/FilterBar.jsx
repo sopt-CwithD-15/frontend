@@ -2,6 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import colors from 'Constants/colors';
 import { ReactComponent as refreshIC } from 'Assets/icon/Filterbar/refreshIC.svg';
+import { ReactComponent as filterIC } from 'Assets/icon/Filterbar/filter.svg';
+import Responsive from 'Components/Responsive';
+import { applyMediaQuery } from 'Style/mediaQuery';
 
 function FilterBar() {
   const [click, setClick] = useState('all');
@@ -13,15 +16,21 @@ function FilterBar() {
   return (
     <StyledFilterbar>
       <FilterWrapper>
-        <FilterBtn name={'all'} onClick={handlerClick} click={click}>
-          전체
-        </FilterBtn>
-        <FilterBtn name={'music'} onClick={handlerClick} click={click}>
-          음악
-        </FilterBtn>
-        <FilterBtn name={'live'} onClick={handlerClick} click={click}>
-          실시간
-        </FilterBtn>
+        <Responsive mobile>
+          <FilterBtn name={'all'} onClick={handlerClick} click={click}>
+            전체
+          </FilterBtn>
+          <FilterBtn name={'music'} onClick={handlerClick} click={click}>
+            음악
+          </FilterBtn>
+          <FilterBtn name={'live'} onClick={handlerClick} click={click}>
+            실시간
+          </FilterBtn>
+        </Responsive>
+        <Responsive tablet desktop>
+          <Filter alt="filter"></Filter>
+          <span>필터</span>
+        </Responsive>
       </FilterWrapper>
       <RefreshImg />
     </StyledFilterbar>
@@ -38,11 +47,22 @@ const StyledFilterbar = styled.div`
   height: 4.5rem;
   border: 0;
   background-color: rgba(0, 0, 0, 0);
-  margin-left: 1.3rem;
+  border-bottom: 1px solid ${colors.light.searchTabBorder};
+  ${applyMediaQuery('mobile')} {
+    border-bottom: 0;
+    margin-left: 1.3rem;
+  }
 `;
 
 const FilterWrapper = styled.div`
   display: flex;
+  align-items: center;
+
+  & > span {
+    font-size: 11px;
+    color: ${colors.light.subText};
+    margin-left: 0.8rem;
+  }
 `;
 
 const FilterBtn = styled.button`
@@ -65,5 +85,11 @@ const RefreshImg = styled(refreshIC)`
   & > * {
     fill: ${({ theme }) => colors[theme.currentMode].navBarLogin};
   }
+`;
+
+const Filter = styled(filterIC)`
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 1rem;
 `;
 export default FilterBar;
