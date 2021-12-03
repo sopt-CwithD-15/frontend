@@ -34,14 +34,15 @@ function ChannelInfo(props) {
 }
 
 const StyledChannelInfo = styled.div`
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem 1rem 1.8rem 1rem;
   display: flex;
   align-items: center;
   border-bottom: 0.01rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
 
   ${applyMediaQuery('mobile')} {
-    border-top: 0.02rem solid ${({ theme }) => colors[theme.currentMode].mobileChannelInfoBorder};
-    border-bottom: 0.02rem solid ${({ theme }) => colors[theme.currentMode].mobileChannelInfoBorder};
+    padding: 1rem 1rem 1rem 1rem;
+    border-top: 0.01rem solid ${({ theme }) => colors[theme.currentMode].mobileChannelInfoBorder};
+    border-bottom: 0.01rem solid ${({ theme }) => colors[theme.currentMode].mobileChannelInfoBorder};
   }
 `;
 
@@ -49,8 +50,8 @@ const ChannelProfile = styled.div`
   & img {
     border-radius: 50%;
     overflow: hidden;
-    width: 3.3rem;
-    height: 3.3rem;
+    width: 4rem;
+    height: 4rem;
 
     ${applyMediaQuery('mobile')} {
       width: 3.3rem;
@@ -107,9 +108,8 @@ const NoticeIcon = styled.img`
     margin-right: 1rem;
   }
   height: ${(props) => (props.subscribe === '구독중' ? '2.5rem;' : '0rem;')};
-  margin-right: 1.4rem;
+  margin-right: 2rem;
   overflow: hidden;
-  margin-right: 1rem;
 `;
 
 const SubscribeButton = styled.button`
@@ -121,7 +121,7 @@ const SubscribeButton = styled.button`
     background-color: ${(props) =>
       props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
     height: 2rem;
-    width: ${(props) => (props.subscribe === '구독중' ? '4.9rem;' : '3.7rem;')};
+    width: ${(props) => (props.subscribe === '구독중' ? '4rem;' : '3.5rem;')};
     text-align: center;
     border-radius: 0.5rem;
   }
@@ -130,7 +130,7 @@ const SubscribeButton = styled.button`
   background-color: ${(props) =>
     props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
   height: 3.7rem;
-  width: ${(props) => (props.subscribe === '구독중' ? '9.9rem;' : '8.3rem;')};
+  width: ${(props) => (props.subscribe === '구독중' ? '8.5rem;' : '7rem;')};
   border-radius: 0.5rem;
 `;
 
