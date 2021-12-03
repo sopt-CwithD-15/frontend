@@ -14,7 +14,10 @@ export default {
     searchTabBorder: '#ECECEC',
     searchBarBg: 'white',
     progressBg: 'rgba(0, 0, 0, 0.8)',
+    channelInfoBorder: '#959595',
     iconText: '#030303',
+    mobileCommentListHeader: '#f4f4f4',
+    micBg: '#121212',
   },
   dark: {
     mainColor: '#ED2123',
@@ -31,6 +34,9 @@ export default {
     searchTabBorder: '#121212',
     searchBarBg: '#121212',
     progressBg: 'rgba(0, 0, 0, 0.8)',
-    iconText: '#FFFFFF',
+    channelInfoBorder: '#7c7c7c',
+    iconText: 'white',
+    mobileCommentListHeader: '#212121',
+    micBg: '#F9F9F9',
   },
 };

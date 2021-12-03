@@ -25,8 +25,7 @@
     "lint-eslint": "eslint --ignore-path .gitignore src/**/*.{js,jsx} --fix",
     "lint-prettier": "prettier --write \"src/**/*.(js|jsx)\"",
     "check-lint": "eslint --ignore-path .gitignore src/**/*.{js,jsx}",
-    "check-format": "prettier --check \"src/**/*.(js|jsx)\"",
-    "run-mock": "json-server --watch mock-api.json --port 4000"
+    "check-format": "prettier --check \"src/**/*.(js|jsx)\""
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +51,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "7.27.0",
     "eslint-plugin-react-hooks": "4.3.0",
-    "json-server": "0.17.0",
     "prettier": "2.4.1"
   }
 }

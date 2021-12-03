@@ -1,16 +1,58 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import likeIcon from 'Assets/icon/like.svg';
-import unlikeIcon from 'Assets/icon/unlike.svg';
-import shareIcon from 'Assets/icon/arrow.svg';
-import saveIcon from 'Assets/icon/list1.svg';
-import reportIcon from 'Assets/icon/flag.svg';
+import { client } from 'Cores/api';
+import likeIcon from 'Assets/icon/Videoicon/like.svg';
+import dislikeIcon from 'Assets/icon/Videoicon/unlike.svg';
+import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
+import filledDislikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
+import shareIcon from 'Assets/icon/Videoicon/arrow.svg';
+import saveIcon from 'Assets/icon/Videoicon/list1.svg';
+import reportIcon from 'Assets/icon/Videoicon/flag.svg';
 import colors from 'Constants/colors';
+import { shortenNumber } from 'Utils/shortenNumber';
 
-function VideoIcons() {
+function VideoIcons(props) {
+  const { like, dislike, isLike, isDislike, vid } = props;
+
+  const [isLikeClicked, setLikeClicked] = useState(isLike);
+  const [isDislikeClicked, setDislikeClicked] = useState(isDislike);
+  const [likeCount, setLikeCount] = useState(like);
+  const [dislikeCount, setDislikeCount] = useState(dislike);
+
+  const handleLikeClick = async (e) => {
+    e.preventDefault();
+    try {
+      await client.post(`/video/like/${vid}`);
+      setLikeClicked(!isLikeClicked);
+      setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount + 1));
+    } catch (error) {
+      throw Error('Failed to post like');
+    }
+  };
+
+  const handleDislikeClick = async (e) => {
+    e.preventDefault();
+    try {
+      await client.post(`/video/dislike/${vid}`);
+      setDislikeClicked(!isDislikeClicked);
+      setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount + 1));
+    } catch (error) {
+      throw Error('Failed to post dislike');
+    }
+  };
+
   return (
     <StyledVideoIcons>
-      <IconLabelButton src={likeIcon} label="9.3천" alt="like"></IconLabelButton>
-      <IconLabelButton src={unlikeIcon} label="10" alt="unlike"></IconLabelButton>
+      <IconLabelButton
+        src={isLikeClicked ? filledLikeIcon : likeIcon}
+        label={shortenNumber(likeCount)}
+        alt="like"
+        onClick={handleLikeClick}></IconLabelButton>
+      <IconLabelButton
+        src={isDislikeClicked ? filledDislikeIcon : dislikeIcon}
+        label={shortenNumber(dislikeCount)}
+        alt="dislike"
+        onClick={handleDislikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
       <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
       <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>
@@ -18,9 +60,9 @@ function VideoIcons() {
   );
 }
 
-function IconLabelButton({ src, label, alt }) {
+function IconLabelButton({ src, label, alt, onClick }) {
   return (
-    <StyledIconLabelButton>
+    <StyledIconLabelButton onClick={onClick}>
       <ImageHolder>
         <Image src={src} alt={alt} />
       </ImageHolder>
@@ -34,6 +76,7 @@ const StyledIconLabelButton = styled.button`
   border: 0;
   font-family: Roboto;
   font-size: 1.1rem;
+  width: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +88,9 @@ const ImageHolder = styled.span`
   height: 2.6rem;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  filter: ${({ theme }) => (theme.currentMode === 'dark' ? 'brightness(1) invert(1)' : 'brightness(0) invert(0)')};
+`;
 
 const Label = styled.span`
   color: ${({ theme }) => colors[theme.currentMode].iconText};
