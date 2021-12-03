@@ -7,11 +7,16 @@ import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
 import filledDislikeIcon from 'Assets/icon/Videoicon/unlike(fill).svg';
 import shareIcon from 'Assets/icon/Videoicon/arrow.svg';
 import saveIcon from 'Assets/icon/Videoicon/list1.svg';
+import scriptIcon from 'Assets/icon/Videoicon/script.svg';
 import reportIcon from 'Assets/icon/Videoicon/flag.svg';
 import colors from 'Constants/colors';
 import { shortenNumber } from 'Utils/shortenNumber';
+import { applyMediaQuery } from 'Style/mediaQuery';
+import { useMedia } from 'Components/Responsive';
 
 function VideoIcons(props) {
+  const { isMobile } = useMedia();
+
   const { like, dislike, isLike, isDislike, vid } = props;
 
   const [isLikeClicked, setLikeClicked] = useState(isLike);
@@ -55,6 +60,7 @@ function VideoIcons(props) {
         onClick={handleDislikeClick}></IconLabelButton>
       <IconLabelButton src={shareIcon} label="공유" alt="share"></IconLabelButton>
       <IconLabelButton src={saveIcon} label="저장" alt="save"></IconLabelButton>
+      {!isMobile && <IconLabelButton src={scriptIcon} label="스크립트 열기" alt="script"></IconLabelButton>}
       <IconLabelButton src={reportIcon} label="신고" alt="report"></IconLabelButton>
     </StyledVideoIcons>
   );
@@ -75,17 +81,25 @@ const StyledIconLabelButton = styled.button`
   background-color: transparent;
   border: 0;
   font-family: Roboto;
-  font-size: 1.1rem;
-  width: 4rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
+
+  ${applyMediaQuery('mobile')} {
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ImageHolder = styled.span`
   display: flex;
   align-items: center;
-  height: 2.6rem;
+  height: 3.7rem;
+
+  ${applyMediaQuery('mobile')} {
+    height: 2.6rem;
+  }
 `;
 
 const Image = styled.img`
@@ -94,14 +108,24 @@ const Image = styled.img`
 
 const Label = styled.span`
   color: ${({ theme }) => colors[theme.currentMode].iconText};
-  font-size: 1.1rem;
+  font-size: 1.8rem;
+
+  ${applyMediaQuery('mobile')} {
+    font-size: 1.1rem;
+  }
+  ${applyMediaQuery('tablet')} {
+    font-size: 1.2rem;
+  }
 `;
 
 const StyledVideoIcons = styled.div`
-  padding: 0 1rem 1rem 1rem;
+  padding-bottom: 1rem;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+
+  ${applyMediaQuery('mobile')} {
+    justify-content: space-around;
+    align-items: center;
+  }
 `;
 
 export default VideoIcons;
