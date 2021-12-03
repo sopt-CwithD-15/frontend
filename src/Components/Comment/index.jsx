@@ -60,12 +60,14 @@ function Comment({ data }) {
 const StyledComment = styled.article`
   width: 100%;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1rem 1.5rem;
 
   ${applyMediaQuery('mobile')} {
+    gap: 1rem;
     border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
   }
+
   color: ${({ theme }) => colors[theme.currentMode].iconText};
 `;
 
@@ -92,6 +94,9 @@ const CommentHeader = styled.div`
 
 const CommentAuthor = styled.h2`
   font-size: 1.2rem;
+  ${applyMediaQuery('desktop')} {
+    font-size: 1.4rem;
+  }
   font-weight: bolder;
 `;
 
@@ -103,6 +108,9 @@ const CommentDate = styled.span`
 
 const CommentBody = styled.p`
   font-size: 1.2rem;
+  ${applyMediaQuery('desktop')} {
+    font-size: 1.4rem;
+  }
   letter-spacing: -0.03rem;
 `;
 

@@ -146,6 +146,7 @@ const LoginText = styled.p`
   color: ${({ theme }) => colors[theme.currentMode].subText};
   letter-spacing: -0.04rem;
   white-space: pre-line;
+  line-height: 1.3rem;
 `;
 
 const LoginBtn = styled(LoginIC)``;
