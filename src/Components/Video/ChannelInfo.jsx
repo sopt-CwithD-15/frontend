@@ -34,21 +34,28 @@ function ChannelInfo(props) {
 }
 
 const StyledChannelInfo = styled.div`
-  padding: 0 1.1rem;
+  padding: 1rem 1rem 1rem 1rem;
   display: flex;
   align-items: center;
-  border-top: 0.02rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
-  border-bottom: 0.02rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  border-bottom: 0.01rem solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+
+  ${applyMediaQuery('mobile')} {
+    border-top: 0.02rem solid ${({ theme }) => colors[theme.currentMode].mobileChannelInfoBorder};
+    border-bottom: 0.02rem solid ${({ theme }) => colors[theme.currentMode].mobileChannelInfoBorder};
+  }
 `;
 
 const ChannelProfile = styled.div`
-  padding: 1.2rem 0;
-
   & img {
-    width: 3.3rem;
-    height: 3.3rem;
     border-radius: 50%;
     overflow: hidden;
+    width: 3.3rem;
+    height: 3.3rem;
+
+    ${applyMediaQuery('mobile')} {
+      width: 3.3rem;
+      height: 3.3rem;
+    }
   }
 `;
 
@@ -65,6 +72,10 @@ const ChannelName = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
   padding-bottom: 0.3rem;
+
+  ${applyMediaQuery('desktop')} {
+    font-size: 1.6rem;
+  }
 `;
 
 const ChannelSubscribeCount = styled.div`
@@ -77,16 +88,26 @@ const ChannelSubscribeCount = styled.div`
   color: ${({ theme }) => colors[theme.currentMode].iconText};
   font-size: 1rem;
   letter-spacing: -0.03rem;
+
+  ${applyMediaQuery('desktop')} {
+    font-size: 1.4rem;
+  }
 `;
 
 const SubscribeWrapper = styled.div`
   margin-left: auto;
   display: flex;
   justify-content: right;
+  align-items: center;
 `;
 
 const NoticeIcon = styled.img`
-  width: ${(props) => (props.subscribe === '구독중' ? '1.3rem;' : '0rem;')};
+  ${applyMediaQuery('mobile')} {
+    height: ${(props) => (props.subscribe === '구독중' ? '1.3rem;' : '0rem;')};
+    margin-right: 1rem;
+  }
+  height: ${(props) => (props.subscribe === '구독중' ? '2.5rem;' : '0rem;')};
+  margin-right: 1.4rem;
   overflow: hidden;
   margin-right: 1rem;
 `;
@@ -104,11 +125,12 @@ const SubscribeButton = styled.button`
     text-align: center;
     border-radius: 0.5rem;
   }
+  font-size: 1.4rem;
   color: ${({ theme }) => colors[theme.currentMode].navBarBg};
   background-color: ${(props) =>
     props.subscribe === '구독중' ? colors.light.subscribingText : colors.light.mainColor};
-  height: 5.1rem;
-  width: ${(props) => (props.subscribe === '구독중' ? '10.9rem;' : '9.3rem;')};
+  height: 3.7rem;
+  width: ${(props) => (props.subscribe === '구독중' ? '9.9rem;' : '8.3rem;')};
   border-radius: 0.5rem;
 `;
 
