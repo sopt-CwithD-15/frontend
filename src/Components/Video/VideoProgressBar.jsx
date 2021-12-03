@@ -9,7 +9,7 @@ const StyledProgressBar = styled.div`
   position: absolute;
   top: 0;
   width: ${(props) => props.progress || '100'}%;
-  height: 3px;
+  height: 4px;
   background-color: ${({ theme, progress }) => (progress ? colors[theme.currentMode].mainColor : '#CBCBCB')};
   margin-bottom: 3px;
 `;

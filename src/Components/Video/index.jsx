@@ -15,6 +15,7 @@ import { ReactComponent as AddList } from 'Assets/icon/addList.svg';
 import { ReactComponent as PlayList } from 'Assets/icon/playlist.svg';
 import { ReactComponent as DotMenu } from 'Assets/icon/dot-menu.svg';
 import { shortenDate } from 'Utils/shortenDate';
+import { getRandomProgress } from 'Utils/getRandomProgres';
 
 function Video({ videoInfo }) {
   const { videoId, title, viewCount, createdAt, author, description, runtime, thumbnail, isHot } = videoInfo;
@@ -46,7 +47,7 @@ function Video({ videoInfo }) {
         <Wrapper>
           <VideoThumbnail>
             <img src={thumbnail} alt="video-thumbnail" />
-            <VideoProgressBar />
+            <VideoProgressBar progress={getRandomProgress()} />
           </VideoThumbnail>
           <ToolWrapper>
             <Responsive mobile>
