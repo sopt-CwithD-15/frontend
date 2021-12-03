@@ -16,6 +16,7 @@ const StyledTab = styled.li`
   display: flex;
   align-items: center;
   gap: 2rem;
+  text-align: center;
 
   ${applyMediaQuery('tablet')} {
     flex-direction: column;
