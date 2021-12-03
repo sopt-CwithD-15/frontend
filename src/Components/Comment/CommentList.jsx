@@ -23,7 +23,7 @@ function CommentList({ comments, toggle, vid }) {
     try {
       const result = await client.post(`/video/comment/${vid}`, {
         content: commentValue,
-        userId: 3,
+        userId: 4,
       });
       setCurrentComments((prevComments) => [...prevComments, result.data.data]);
     } catch (error) {

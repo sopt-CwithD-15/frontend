@@ -188,6 +188,15 @@ const Wrapper = styled.div`
       `};
   }
 
+  ${applyMediaQuery('desktop')} {
+    flex: 1.5;
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        flex: 3;
+      `};
+  }
+
   position: relative;
 `;
 
@@ -224,7 +233,7 @@ const VideoInfoWrapper = styled.div`
   flex-direction: column;
   flex: 3;
 
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 
 const PlayListWrapper = styled.div`

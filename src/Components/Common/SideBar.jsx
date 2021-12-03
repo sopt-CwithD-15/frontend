@@ -69,7 +69,7 @@ const StyledSidebar = styled.aside`
   padding: 1rem 0;
 
   ${applyMediaQuery('tablet')} {
-    width: 6rem;
+    width: 7rem;
     height: calc(100vh - 4.5rem);
   }
 
