@@ -108,7 +108,7 @@ const Image = styled.img`
 
 const Label = styled.span`
   color: ${({ theme }) => colors[theme.currentMode].iconText};
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 
   ${applyMediaQuery('mobile')} {
     font-size: 1.1rem;
@@ -119,12 +119,12 @@ const Label = styled.span`
 `;
 
 const StyledVideoIcons = styled.div`
-  padding-bottom: 1rem;
   display: flex;
 
   ${applyMediaQuery('mobile')} {
     justify-content: space-around;
     align-items: center;
+    padding-bottom: 1rem;
   }
 `;
 
