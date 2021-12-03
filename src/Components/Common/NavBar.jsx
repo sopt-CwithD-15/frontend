@@ -96,7 +96,7 @@ const SearchBar = styled.div`
   & > input {
     width: 30rem;
     ${applyMediaQuery('desktop')} {
-      width: 70rem;
+      width: 40vw;
     }
     height: 3rem;
     outline: none;
