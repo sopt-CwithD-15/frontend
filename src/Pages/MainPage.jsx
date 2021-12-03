@@ -5,11 +5,11 @@ import FilterBar from 'Components/Common/FilterBar';
 import SideBar from 'Components/Common/SideBar';
 import Responsive from 'Components/Responsive';
 import colors from 'Constants/colors';
-import useTest from 'Cores/Hooks/useTest';
+import useAPI from 'Cores/Hooks/useAPI';
 import { applyMediaQuery } from 'Style/mediaQuery';
 
 function MainPage() {
-  const { loading, data } = useTest({
+  const { loading, data } = useAPI({
     method: 'GET',
     url: '/video',
   });
@@ -23,8 +23,17 @@ function MainPage() {
           <Divider />
           <FilterBar />
         </Wrapper>
+        {data && !loading && <VideoContainer videoList={data.videos} />}
       </Responsive>
-      {data && !loading && <VideoContainer videoList={data.videos} />}
+      <Responsive tablet desktop>
+        <SideBar />
+        <ContentWrapper>
+          <Wrapper>
+            <FilterBar />
+          </Wrapper>
+          {data && !loading && <VideoContainer videoList={data.videos} />}
+        </ContentWrapper>
+      </Responsive>
     </Container>
   );
 }
@@ -51,4 +60,20 @@ const Divider = styled.div`
   height: 3rem;
   background-color: ${colors.light.searchTabBorder};
 `;
+
+const ContentWrapper = styled.div`
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+
+  ${applyMediaQuery('tablet')} {
+    margin-left: calc(6rem + 1rem);
+  }
+
+  ${applyMediaQuery('desktop')} {
+    margin-left: calc(22rem + 1rem);
+    padding: 0 5%;
+  }
+`;
+
 export default MainPage;

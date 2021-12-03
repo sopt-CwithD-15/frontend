@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Responsive from 'Components/Responsive';
 import Comment from 'Components/Comment';
-import { test } from 'Cores/api';
+import { client } from 'Cores/api';
 import colors from 'Constants/colors';
 import reply from 'Assets/icon/reply.svg';
 import filter from 'Assets/icon/filter.svg';
@@ -14,14 +14,16 @@ function CommentList({ comments, toggle, vid }) {
   const [commentValue, setCommentValue] = useState('');
   const [currentComments, setCurrentComments] = useState(comments);
   const showComment = () =>
-    currentComments.map((comment) => <Comment data={comment} key={comment.commentId} />).reverse();
+    currentComments
+      .map((comment) => <Comment data={comment} key={`${comment.content}-${new Date().getTime()}`} />)
+      .reverse();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await test.post(`/video/comment/${vid}`, {
+      const result = await client.post(`/video/comment/${vid}`, {
         content: commentValue,
-        userId: 1,
+        userId: 3,
       });
       setCurrentComments((prevComments) => [...prevComments, result.data.data]);
     } catch (error) {
@@ -86,6 +88,11 @@ const CommentContainer = styled.div`
   order: 1;
 
   border-top: 0.02px solid ${({ theme }) => colors[theme.currentMode].channelInfoBorder};
+  ${applyMediaQuery('desktop')} {
+    order: unset;
+    border-top: none;
+    background-color: transparent;
+  }
   ${applyMediaQuery('mobile')} {
     border: none;
   }

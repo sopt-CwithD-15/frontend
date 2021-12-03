@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { test } from 'Cores/api';
+import { client } from 'Cores/api';
 import likeIcon from 'Assets/icon/Videoicon/like.svg';
 import dislikeIcon from 'Assets/icon/Videoicon/unlike.svg';
 import filledLikeIcon from 'Assets/icon/Videoicon/like(fill).svg';
@@ -22,7 +22,7 @@ function VideoIcons(props) {
   const handleLikeClick = async (e) => {
     e.preventDefault();
     try {
-      await test.post(`/video/like/${vid}`);
+      await client.post(`/video/like/${vid}`);
       setLikeClicked(!isLikeClicked);
       setLikeCount((likeCount) => (isLikeClicked ? likeCount - 1 : likeCount + 1));
     } catch (error) {
@@ -33,17 +33,13 @@ function VideoIcons(props) {
   const handleDislikeClick = async (e) => {
     e.preventDefault();
     try {
-      await test.post(`/video/dislike/${vid}`);
+      await client.post(`/video/dislike/${vid}`);
       setDislikeClicked(!isDislikeClicked);
       setDislikeCount((dislikeCount) => (isDislikeClicked ? dislikeCount - 1 : dislikeCount + 1));
     } catch (error) {
       throw Error('Failed to post dislike');
     }
   };
-
-  useEffect(() => {
-    console.log(isDislike, isLike, isDislikeClicked, isLikeClicked);
-  }, [isDislike, isLike, isLikeClicked, isDislikeClicked]);
 
   return (
     <StyledVideoIcons>

@@ -23,7 +23,7 @@ function useVideoInfo() {
       try {
         setLoading(true);
         const { data } = await client.get(`/video/${currentVid}`);
-        setData(data);
+        setData(data.data);
       } catch (error) {
         setError({
           message: error,
