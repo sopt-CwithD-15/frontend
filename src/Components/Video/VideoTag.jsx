@@ -28,7 +28,16 @@ const Tag = styled.li`
   color: ${(props) => props.color};
   font-family: Roboto;
   font-weight: 500;
-  font-size: 1.1rem;
+
+  ${applyMediaQuery('mobile')} {
+    font-size: 1.1rem;
+  }
+  ${applyMediaQuery('tablet')} {
+    font-size: 1.2rem;
+  }
+
+  font-size: 1.4rem;
+
   line-height: 1.1rem;
   letter-spacing: -0.03rem;
   &::before {

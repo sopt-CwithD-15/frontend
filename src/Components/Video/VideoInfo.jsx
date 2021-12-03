@@ -40,7 +40,24 @@ const StyledVideoInfo = styled.div`
     color: ${({ theme }) => colors[theme.currentMode].subText};
     font-family: Roboto;
     letter-spacing: -0.03rem;
-    font-size: 1rem;
+    ${applyMediaQuery('mobile')} {
+      font-size: 1rem;
+    }
+    ${applyMediaQuery('tablet')} {
+      font-size: 1.2rem;
+      ${({ theme }) =>
+        theme.small &&
+        css`
+          font-size: 1rem;
+        `};
+    }
+
+    font-size: 1.4rem;
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        font-size: 1.2rem;
+      `};
   }
 
   & > span:first-child {

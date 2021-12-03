@@ -19,7 +19,7 @@ import { ReactComponent as FoldImg } from 'Assets/icon/foldToggleBtn.svg';
 function VideoPage() {
   const navigator = useNavigate();
   const [isMobileCommentOpen, setIsMobileCommentOpen] = useState(false);
-  const [isDesktopVideoListOpen, setIsDesktopVideoListOpen] = useState(false);
+  const [isDesktopVideoListOpen, setIsDesktopVideoListOpen] = useState(true);
   const { data: videoInfo, loading: videoInfoLoading, error, vid } = useVideoInfo();
   const toggleMobileComment = () => setIsMobileCommentOpen(!isMobileCommentOpen);
   const toggleDesktopVideoList = () => setIsDesktopVideoListOpen(!isDesktopVideoListOpen);
@@ -125,9 +125,10 @@ const Container = styled.main`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
-  gap: 0.5rem;
+  gap: 1rem;
+  padding: 1.1rem;
   ${applyMediaQuery('mobile')} {
+    padding: 0.5rem;
     gap: 0;
   }
 `;

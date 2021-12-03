@@ -8,7 +8,7 @@ function VideoTitle({ title }) {
 
 const StyledVideoTitle = styled.h2`
   color: ${({ theme }) => colors[theme.currentMode].iconText};
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   line-height: 1.6rem;
   letter-spacing: -0.05rem;
   text-overflow: ellipsis;
@@ -23,11 +23,22 @@ const StyledVideoTitle = styled.h2`
   }
 
   ${applyMediaQuery('tablet')} {
+    font-size: 1.6rem;
     ${({ theme }) =>
       theme.small &&
       css`
         font-size: 1.2rem;
         line-height: 1.4rem;
+        max-height: 2.8rem;
+      `};
+  }
+  ${applyMediaQuery('desktop')} {
+    ${({ theme }) =>
+      theme.small &&
+      css`
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        max-height: 2.8rem;
       `};
   }
   font-family: Arial;
