@@ -95,6 +95,9 @@ const SearchBar = styled.div`
 
   & > input {
     width: 30rem;
+    ${applyMediaQuery('desktop')} {
+      width: 70rem;
+    }
     height: 3rem;
     outline: none;
     border: ${({ theme, pathname }) =>
@@ -197,12 +200,11 @@ const Mic = styled(MicIC)`
   height: 3rem;
   margin-left: 1.3rem;
   & > :nth-child(1) {
-    fill: ${({ theme, pathname }) =>
-      pathname === '/video' ? colors.dark.searchBarBg : colors[theme.currentMode].searchBarBg};
+    fill: ${({ theme, pathname }) => (pathname === '/video' ? colors.dark.micBg : colors[theme.currentMode].micBg)};
   }
   & > :last-child {
     fill: ${({ theme, pathname }) =>
-      pathname === '/video' ? colors.light.searchBarBg : colors[theme.currentMode].micBg};
+      pathname === '/video' ? colors.dark.micColor : colors[theme.currentMode].micColor};
   }
 `;
 
